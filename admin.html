@@ -12,11 +12,17 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
     import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-    };
+const firebaseConfig = {
+  apiKey: "AIzaSyBvqzYTaepJn-WvWMPSZJe26Ydkw-7MXLE",
+  authDomain: "syncskilll.firebaseapp.com",
+  databaseURL: "https://syncskilll-default-rtdb.firebaseio.com",
+  projectId: "syncskilll",
+  storageBucket: "syncskilll.firebasestorage.app",
+  messagingSenderId: "203322315096",
+  appId: "1:203322315096:web:958fc7d94806ef9a98552d",
+  measurementId: "G-JWWWM2ZQSK"
+};
+
 
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
