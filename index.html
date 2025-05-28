@@ -4,33 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        :root {
-            --background: #F6F8FA;
-            --text: #0A1122;
-            --text-secondary: #4B5EAA;
-            --primary: #007AFF;
-            --primary-dark: #005BB5;
-            --card-bg: #FFFFFF;
-            --card-backdrop: blur(16px);
-            --border: rgba(229, 231, 235, 0.6);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            --glow: 0 0 16px rgba(0, 122, 255, 0.25);
-            --spacing-unit: 8px;
-            --font-size-base: 16px;
-            --easing: cubic-bezier(0.36, 0, 0.66, -0.56);
-        }
-
         body {
-            background: var(--background);
+            background: #F6F8FA;
             margin: 0;
-            padding: calc(var(--spacing-unit) * 4);
+            padding: 32px; /* calc(8px * 4) */
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .stats-section {
             display: flex;
             flex-wrap: wrap;
-            gap: calc(var(--spacing-unit) * 3);
+            gap: 24px; /* calc(8px * 3) */
             justify-content: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -38,14 +22,14 @@
 
         .stats-section-card {
             position: relative;
-            background: var(--card-bg);
+            background: #FFFFFF;
             border-radius: 20px;
-            padding: calc(var(--spacing-unit) * 2); /* Reduced padding to decrease card height */
-            box-shadow: var(--shadow);
-            transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+            padding: 16px; /* calc(8px * 2) */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s cubic-bezier(0.36, 0, 0.66, -0.56), box-shadow 0.4s cubic-bezier(0.36, 0, 0.66, -0.56);
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit) * 1); /* Reduced gap to decrease height */
+            gap: 8px; /* calc(8px * 1) */
             box-sizing: border-box;
             overflow: hidden;
             text-decoration: none;
@@ -55,9 +39,9 @@
         /* Desktop: Side by side */
         @media (min-width: 769px) {
             .stats-section-card {
-                flex: 1 1 calc(50% - calc(var(--spacing-unit) * 1.5));
-                max-width: calc(50% - calc(var(--spacing-unit) * 1.5));
-                padding: calc(var(--spacing-unit) * 3); /* Slightly larger padding on desktop, still reduced */
+                flex: 1 1 calc(50% - 12px); /* calc(8px * 1.5) */
+                max-width: calc(50% - 12px);
+                padding: 24px; /* calc(8px * 3) */
             }
         }
 
@@ -66,44 +50,44 @@
             .stats-section-card {
                 flex: 1 1 100%;
                 width: 100%;
-                padding: calc(var(--spacing-unit) * 2); /* Reduced padding for mobile */
+                padding: 16px; /* calc(8px * 2) */
                 border-radius: 16px;
             }
         }
 
         .stats-section-card:hover, .stats-section-card:focus {
             transform: translateY(-8px);
-            box-shadow: var(--shadow), var(--glow);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 122, 255, 0.25);
         }
 
         .stats-section-card.is-above-midpoint {
             transform: translateY(-8px);
-            box-shadow: var(--shadow), var(--glow);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 122, 255, 0.25);
         }
 
         .stats-section-card--text {
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit) * 0.5); /* Reduced gap to decrease text section height */
+            gap: 4px; /* calc(8px * 0.5) */
         }
 
         .stats-section-card--title {
             font-size: clamp(1.25rem, 5vw, 1.5rem);
-            color: var(--text);
+            color: #0A1122;
             font-weight: 600;
             line-height: 1.2;
         }
 
         .stats-section-card--subtitle {
             font-size: clamp(0.875rem, 4vw, 1rem);
-            color: var(--text-secondary);
+            color: #4B5EAA;
             line-height: 1.5;
         }
 
         .stats-section-card--image-container {
             position: relative;
-            width: clamp(120px, 40vw, 171px); /* Unchanged image size */
-            height: clamp(65px, 20vw, 93.25px); /* Unchanged image size */
+            width: clamp(120px, 40vw, 171px);
+            height: clamp(65px, 20vw, 93.25px);
             align-self: flex-end;
             will-change: transform;
         }
@@ -113,29 +97,29 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            margin-right: -10px; /* Adjusted to prevent clipping with reduced padding */
-            margin-bottom: -20px; /* Adjusted to prevent clipping */
+            margin-right: -10px;
+            margin-bottom: -20px;
             width: 100%;
             height: 100%;
             object-fit: contain;
             transition: opacity 0.3s ease;
         }
 
-        /* Desktop: Show default image by default, hover image on hover */
+        /* Desktop: Show hover image by default, normal image on hover */
         @media (min-width: 769px) {
             .stats-section-card--image {
-                opacity: 1;
+                opacity: 0;
             }
             .stats-section-card--hover-image {
-                opacity: 0;
+                opacity: 1;
             }
             .stats-section-card:hover .stats-section-card--image,
             .stats-section-card:focus .stats-section-card--image {
-                opacity: 0;
+                opacity: 1;
             }
             .stats-section-card:hover .stats-section-card--hover-image,
             .stats-section-card:focus .stats-section-card--hover-image {
-                opacity: 1;
+                opacity: 0;
             }
         }
 
@@ -158,14 +142,14 @@
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .stats-section-card--image-container {
-                margin-right: -8px; /* Adjusted for reduced padding */
-                margin-bottom: -15px; /* Adjusted for reduced padding */
+                margin-right: -8px;
+                margin-bottom: -15px;
             }
         }
 
         /* Accessibility */
         .stats-section-card:focus {
-            outline: 2px solid var(--primary);
+            outline: 2px solid #007AFF;
             outline-offset: 2px;
         }
     </style>
@@ -190,8 +174,8 @@ Show Less</h1>
                 <div class="stats-section-card--subtitle">Explore and learn</div>
             </div>
             <div class="stats-section-card--image-container">
-                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
-                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder.svg">
+                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder.svg">
+                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
             </div>
         </a>
         <a href="https://example.com/project2" class="stats-section-card" tabindex="0" role="link" aria-label="Project Two card, redirects to external site">
@@ -200,8 +184,8 @@ Show Less</h1>
                 <div class="stats-section-card--subtitle">Build and grow</div>
             </div>
             <div class="stats-section-card--image-container">
-                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/papers-hover.svg">
-                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="	https://www.growthschool.io/images/course-diff/papers.svg">
+                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder.svg">
+                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
             </div>
         </a>
     </section>
