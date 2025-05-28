@@ -235,52 +235,39 @@ Still wondering If SEO Mentorship Program is for you?
 First of all, the SEO Mentorship Program is not just for job seekers; it also caters to SEO professionals, digital marketers, performance marketers, brand marketers, copywriters, entrepreneurs, digital marketing managers, and those looking to transition into SEO.
 
 Digital Marketing Managers</h1>
-    <script>
-        // Only run Intersection Observers on mobile devices (≤ 768px)
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            const card = document.querySelector(".stats-section-card");
+ if (window.matchMedia("(max-width: 768px)").matches) {
+    const cards = document.querySelectorAll(".stats-section-card");
+    cards.forEach((card) => {
+        const visibilityObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        card.classList.add("is-visible");
+                    } else {
+                        card.classList.remove("is-visible");
+                        card.classList.remove("is-above-midpoint");
+                    }
+                });
+            },
+            { root: null, threshold: 0 }
+        );
 
-            // Observer 1: Track visibility in viewport
-            const visibilityObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            card.classList.add("is-visible");
-                        } else {
-                            card.classList.remove("is-visible");
-                            card.classList.remove("is-above-midpoint"); // Reset when out of viewport
-                        }
-                    });
-                },
-                {
-                    root: null, // Use viewport as root
-                    threshold: 0 // Trigger when any part of card is visible
-                }
-            );
+        const midpointObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        card.classList.add("is-above-midpoint");
+                    } else {
+                        card.classList.remove("is-above-midpoint");
+                    }
+                });
+            },
+            { root: null, rootMargin: "-50% 0px", threshold: 0 }
+        );
 
-            // Observer 2: Track when card's top edge is above or below viewport midpoint
-            const midpointObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            // Card's top edge is at or above midpoint: show hover image
-                            card.classList.add("is-above-midpoint");
-                        } else {
-                            // Card's top edge is below midpoint: show default image
-                            card.classList.remove("is-above-midpoint");
-                        }
-                    });
-                },
-                {
-                    root: null, // Use viewport as root
-                    rootMargin: "-50% 0px", // Trigger when top of card reaches viewport midpoint
-                    threshold: 0 // Trigger as soon as any part crosses the rootMargin
-                }
-            );
-
-            visibilityObserver.observe(card);
-            midpointObserver.observe(card);
-        }
-    </script>
+        visibilityObserver.observe(card);
+        midpointObserver.observe(card);
+    });
+}
 </body>
 </html>
