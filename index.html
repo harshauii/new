@@ -37,7 +37,12 @@
             color: inherit;
         }
 
-        .stats-section-card:hover, .stats-section-card:focus, .stats-section-card.is-above-midpoint {
+        .stats-section-card:hover, .stats-section-card:focus {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow), var(--glow);
+        }
+
+        .stats-section-card.is-above-midpoint {
             transform: translateY(-8px);
             box-shadow: var(--shadow), var(--glow);
         }
@@ -79,41 +84,41 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: opacity 0.3s ease, transform 0.3s var(--easing);
+            transition: opacity 0.3s ease;
         }
 
-        /* Initially hide both images in mobile view */
-        @media (max-width: 768px) {
-            .stats-section-card--image,
+        /* Desktop: Show default image by default, hover image on hover */
+        @media (min-width: 769px) {
+            .stats-section-card--image {
+                opacity: 1;
+            }
             .stats-section-card--hover-image {
                 opacity: 0;
             }
+            .stats-section-card:hover .stats-section-card--image,
+            .stats-section-card:focus .stats-section-card--image {
+                opacity: 0;
+            }
+            .stats-section-card:hover .stats-section-card--hover-image,
+            .stats-section-card:focus .stats-section-card--hover-image {
+                opacity: 1;
+            }
         }
 
-        /* Show default image when card is visible but below midpoint */
-        .stats-section-card.is-visible:not(.is-above-midpoint) .stats-section-card--image {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Show hover image when card is above midpoint or on hover/focus */
-        .stats-section-card:hover .stats-section-card--image,
-        .stats-section-card:focus .stats-section-card--image,
-        .stats-section-card.is-above-midpoint .stats-section-card--image {
-            opacity: 0;
-            transform: scale(1.05);
-        }
-
-        .stats-section-card--hover-image {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-
-        .stats-section-card:hover .stats-section-card--hover-image,
-        .stats-section-card:focus .stats-section-card--hover-image,
-        .stats-section-card.is-above-midpoint .stats-section-card--hover-image {
-            opacity: 1;
-            transform: scale(1);
+        /* Mobile: Control image visibility based on midpoint */
+        @media (max-width: 768px) {
+            .stats-section-card--image {
+                opacity: 0;
+            }
+            .stats-section-card--hover-image {
+                opacity: 0;
+            }
+            .stats-section-card.is-visible:not(.is-above-midpoint) .stats-section-card--image {
+                opacity: 1;
+            }
+            .stats-section-card.is-above-midpoint .stats-section-card--hover-image {
+                opacity: 1;
+            }
         }
 
         /* Mobile optimizations */
@@ -122,7 +127,6 @@
                 padding: calc(var(--spacing-unit) * 4);
                 border-radius: 16px;
             }
-
             .stats-section-card--image-container {
                 margin-right: -10px;
                 margin-bottom: -20px;
@@ -134,25 +138,12 @@
             .stats-section-card {
                 padding: calc(var(--spacing-unit) * 5);
             }
-
-            /* Ensure default image is visible by default on desktop */
-            .stats-section-card--image {
-                opacity: 1;
-                transform: scale(1);
-            }
         }
 
         /* Accessibility */
         .stats-section-card:focus {
             outline: 2px solid var(--primary);
             outline-offset: 2px;
-        }
-
-        /* Touch devices: Allow scroll-based image swap */
-        @media (hover: none) and (max-width: 768px) {
-            .stats-section-card--hover-image {
-                display: block;
-            }
         }
     </style>
 </head>
@@ -235,39 +226,47 @@ Still wondering If SEO Mentorship Program is for you?
 First of all, the SEO Mentorship Program is not just for job seekers; it also caters to SEO professionals, digital marketers, performance marketers, brand marketers, copywriters, entrepreneurs, digital marketing managers, and those looking to transition into SEO.
 
 Digital Marketing Managers</h1>
- if (window.matchMedia("(max-width: 768px)").matches) {
-    const cards = document.querySelectorAll(".stats-section-card");
-    cards.forEach((card) => {
-        const visibilityObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        card.classList.add("is-visible");
-                    } else {
-                        card.classList.remove("is-visible");
-                        card.classList.remove("is-above-midpoint");
-                    }
-                });
-            },
-            { root: null, threshold: 0 }
-        );
+    <script>
+        // Only run Intersection Observers on mobile devices (≤ 768px)
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            const card = document.querySelector(".stats-section-card");
 
-        const midpointObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        card.classList.add("is-above-midpoint");
-                    } else {
-                        card.classList.remove("is-above-midpoint");
-                    }
-                });
-            },
-            { root: null, rootMargin: "-50% 0px", threshold: 0 }
-        );
+            // Observer 1: Track visibility in viewport
+            const visibilityObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        card.classList.toggle("is-visible", entry.isIntersecting);
+                    });
+                },
+                {
+                    root: null,
+                    threshold: 0.1 // Trigger when 10% of card is visible
+                }
+            );
 
-        visibilityObserver.observe(card);
-        midpointObserver.observe(card);
-    });
-}
+            // Observer 2: Track when card's top edge crosses viewport midpoint
+            const midpointObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        card.classList.toggle("is-above-midpoint", entry.isIntersecting);
+                    });
+                },
+                {
+                    root: null,
+                    rootMargin: "-50% 0px 50% 0px", // Trigger at viewport midpoint
+                    threshold: 0
+                }
+            );
+
+            visibilityObserver.observe(card);
+            midpointObserver.observe(card);
+
+            // Cleanup observers on page unload
+            window.addEventListener("unload", () => {
+                visibilityObserver.disconnect();
+                midpointObserver.disconnect();
+            });
+        }
+    </script>
 </body>
 </html>
