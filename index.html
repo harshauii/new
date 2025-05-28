@@ -15,911 +15,7 @@
 </head>
 <body>
 
- <header style="background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.12); height: 72px; position: fixed; top: 0; left: 0; width: 100%; z-index: 100;">
-    <nav style="max-width: 1440px; margin: 0 auto; padding: 0 20px; height: 100%; display: flex; justify-content: space-between; align-items: center;">
-      <a href="/" style="display: flex; align-items: center;">
-        <img src="logo.jpg" alt="Logo" style="height: 28px;">
-      </a>
-      <div class="desktop-only" style="display: flex; align-items: center; gap: 40px;">
-        <div style="position: relative;"
-             onmouseenter="
-               const btn = this.querySelector('button');
-               const m = this.querySelector('.mega-menu');
-               const rect = btn.getBoundingClientRect();
-               m.style.top = rect.bottom + 5 + 'px';
-               m.style.opacity = '1';
-               m.style.transform = 'translate(-50%, 0)';
-               m.style.pointerEvents = 'auto';
-             "
-             onmouseleave="
-               const m = this.querySelector('.mega-menu');
-               m.style.opacity = '0';
-               m.style.transform = 'translate(-50%, 8px)';
-               m.style.pointerEvents = 'none';
-             ">
-          <button style="display: flex; align-items: center; gap: 12px; padding: 12px 20px; background: transparent; border: none; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);"
-                  onmouseover="this.style.background='#f8f9fa'" 
-                  onmouseout="this.style.background='transparent'">
-            <span style="font-family: 'Inter', system-ui, sans-serif; font-size: 15px; font-weight: 500; color: #333333; letter-spacing: 0.2px;">Learning Paths</span>
-            <svg style="width: 18px; height: 18px; color: #4d4d4d; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);" 
-                 viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M6 9l6 6 6-6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="mega-menu"
-               style="position: fixed; top: 0; left: 50%; width: 800px; background: #fff; border-radius: 16px; box-shadow: 0 24px 48px rgba(0,0,0,0.12); padding: 32px; opacity: 0; transform: translate(-50%,8px); transition: all 0.8s cubic-bezier(0.4,0,0.2,1); pointer-events: none;">
-            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px;">
-              <div>
-                <div style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e9ecef;">
-                  <h3 style="font-size: 14px; font-weight: 700; color: #2d3436; letter-spacing: 0.25px; margin: 0; text-transform: uppercase;">Career Accelerators</h3>
-                </div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 12px;">
-                  <li>
-                    <a href="/courses.html" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 8px; background: linear-gradient(95deg, #f8f9fa 0%, #ffffff 100%); border: 1px solid #f1f3f5; text-decoration: none; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);"
-                       onmouseover="this.style.transform='translateX(4px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.05)'"
-                       onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
-                      <div style="width: 32px; height: 32px; background: #6366f1; border-radius: 6px; margin-right: 12px; display: flex; align-items: center; justify-content: center;">
-                        <img src="your-icon.png" alt="Icon" style="width: 16px; height: 16px;" />
-                      </div>
-                      <div>
-                        <div style="font-size: 14px; font-weight: 600; color: #2d3436;">Data Science Pro</div>
-                        <div style="font-size: 12px; color: #6c757d; margin-top: 4px;">12 Courses · 98 Hours</div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div style="margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e9ecef;">
-                  <h3 style="font-size: 14px; font-weight: 700; color: #2d3436; letter-spacing: 0.25px; margin: 0; text-transform: uppercase;">Certifications</h3>
-                </div>
-                <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 12px;">
-                  <li>
-                    <a href="/courses.html" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 8px; background: #ffffff; border: 1px solid #f1f3f5; text-decoration: none; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);"
-                       onmouseover="this.style.background='#f8f9fa'; this.style.borderColor='#e9ecef'"
-                       onmouseout="this.style.background='#ffffff'; this.style.borderColor='#f1f3f5'">
-                      <div style="width: 32px; height: 32px; background: #10b981; border-radius: 6px; margin-right: 12px;"></div>
-                      <div>
-                        <div style="font-size: 14px; font-weight: 600; color: #2d3436;">Cloud Architect</div>
-                        <div style="font-size: 12px; color: #6c757d; margin-top: 4px;">AWS · Azure · GCP</div>
-                      </div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border-radius: 12px; padding: 24px; color: white;">
-                  <div style="font-size: 12px; font-weight: 700; margin-bottom: 8px; opacity: 0.9;">FEATURED PROGRAM</div>
-                  <h3 style="font-size: 18px; font-weight: 700; margin: 0 0 12px 0;">GenAI Mastery</h3>
-                  <p style="font-size: 14px; opacity: 0.9; margin-bottom: 24px; line-height: 1.5;">Master LLMs, Diffusion Models, and Production Deployment</p>
-                  <button style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; font-weight: 600; cursor: pointer; transition: all 0.25s ease;"
-                          onmouseover="this.style.background='rgba(255,255,255,0.25)'"
-                          onmouseout="this.style.background='rgba(255,255,255,0.15)'">
-                    Explore Program
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="profile-menu" style="position: relative;">
-          <div class="profile-trigger" onclick="toggleDropdown()" style="display: flex; align-items: center; gap: 12px; padding: 8px 16px; border-radius: 8px; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); background: transparent;"
-               onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
-            <img id="userAvatar" src="https://via.placeholder.com/36" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
-            <span id="userName" style="font-weight: 500; color: #1e293b; font-size: 14px; position: relative; padding-right: 20px;">Loading...
-              <span style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); transition: transform 0.2s ease; font-size: 18px;">▾</span>
-            </span>
-          </div>
-          <div class="profile-dropdown" style="position: absolute; right: 0; top: calc(100% + 8px); width: 280px; background: #ffffff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); padding: 24px; opacity: 0; transform: translateY(-10px); visibility: hidden; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000;">
-            <div style="text-align: center; margin-bottom: 20px;">
-              <img id="dropdownAvatar" src="https://via.placeholder.com/60" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #e2e8f0; margin-bottom: 16px; transition: transform 0.2s ease;"
-                   onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-              <div id="dropdownName" style="font-weight: 600; font-size: 18px; color: #1e293b; margin-bottom: 4px; line-height: 1.4;">Loading...</div>
-              <div id="dropdownEmail" style="font-size: 14px; color: #64748b; margin-bottom: 16px; word-break: break-all;">Loading...</div>
-            </div>
-            <div style="height: 1px; background: #f1f5f9; margin: 16px 0;"></div>
-            <div class="logout-btn" onclick="logout()" style="padding: 12px; text-align: center; border-radius: 8px; background: #fff; border: 1px solid #f1f5f9; color: #dc2626; font-weight: 500; cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 8px;"
-                 onmouseover="this.style.background='#fef2f2'; this.style.borderColor='#fecaca'"
-                 onmouseout="this.style.background='#fff'; this.style.borderColor='#f1f5f9'">
-              <svg style="width: 18px; height: 18px;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-              </svg>
-              <span>Sign Out</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <button class="mobile-menu-button" id="mobileMenuButton" style="display: none; padding: 8px; border-radius: 8px; border: none; background: transparent; transition: transform 0.2s ease, background 0.2s ease;"
-              onmouseover="this.style.background='rgba(0,0,0,0.05)'; this.style.transform='scale(1.1)'"
-              onmouseout="this.style.background='transparent'; this.style.transform='scale(1)'">
-        <svg style="width: 24px; height: 24px; color: #4b5563;" viewBox="0 0 24 24">
-          <path stroke="currentColor" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-      <div id="mobileMenu" style="position: fixed; top: 0; right: 0; bottom: 0; width: 85vw; max-width: 300px; background: #ffffff; display: flex; flex-direction: column; z-index: 1000; transform: translateX(100%); box-shadow: -4px 0 16px rgba(0,0,0,0.1);">
-        <div style="flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 24px 16px;">
-          <div style="display: flex; justify-content: flex-end; margin-bottom: 24px;">
-            <button id="mobileMenuClose" style="padding: 8px; border-radius: 8px; border: none; background: transparent; transition: background 0.2s ease, transform 0.2s ease;"
-                    onmouseover="this.style.background='rgba(0,0,0,0.05)'; this.style.transform='scale(1.1)'"
-                    onmouseout="this.style.background='transparent'; this.style.transform='scale(1)'">
-              <svg style="width: 24px; height: 24px; color: #4b5563;" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
-            </button>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 24px;">
-            <div style="display: flex; flex-direction: column; gap: 24px;">
-              <h3 onclick="(function(c){c.style.display=c.style.display==='flex'?'none':'flex'})(this.nextElementSibling)"
-                  style="font-size: 16px; font-weight: 700; color: #2d3436; margin: 0; padding: 12px 0; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                <span>Popular Courses</span>
-                <span style="font-size: 18px; line-height: 1;">+</span>
-              </h3>
-              <div style="display: none; flex-direction: column; gap: 12px; padding: 8px 0;">
-                <a href="/courses.html" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 8px; background: linear-gradient(95deg, #f8f9fa 0%, #ffffff 100%); border: 1px solid #f1f3f5; text-decoration: none; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);"
-                   onmouseover="this.style.transform='translateX(4px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.05)'"
-                   onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
-                  <div style="width: 24px; height: 24px; background: #6366f1; border-radius: 6px; margin-right: 12px;"></div>
-                  <div>
-                    <div style="font-size: 14px; font-weight: 600; color: #2d3436;">Data Science Pro</div>
-                    <div style="font-size: 12px; color: #6c757d; margin-top: 4px;">12 Courses · 98 Hours</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div style="border-bottom: 1px solid #e5e7eb; padding-bottom: 8px;">
-              <h3 onclick="(function(c){c.style.display=c.style.display==='flex'?'none':'flex'})(this.nextElementSibling)"
-                  style="font-size: 16px; font-weight: 7
-```html
-00; color: #2d3436; margin: 0; padding: 12px 0; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                <span>Certifications</span>
-                <span style="font-size: 18px; line-height: 1;">+</span>
-              </h3>
-              <div style="display: none; flex-direction: column; gap: 12px; padding: 8px 0;">
-                <a href="/courses.html" style="display: flex; align-items: center; padding: 12px 16px; border-radius: 8px; background: linear-gradient(95deg, #f8f9fa 0%, #ffffff 100%); border: 1px solid #f1f3f5; text-decoration: none; transition: all 0.25s cubic-bezier(0.4,0,0.2,1);"
-                   onmouseover="this.style.transform='translateX(4px)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.05)'"
-                   onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
-                  <div style="width: 24px; height: 24px; background: #6366f1; border-radius: 6px; margin-right: 12px;"></div>
-                  <div>
-                    <div style="font-size: 14px; font-weight: 600; color: #2d3436;">Cloud Architect</div>
-                    <div style="font-size: 12px; color: #6c757d; margin-top: 4px;">AWS · Azure · GCP</div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div style="padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
-              <div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border-radius: 12px; padding: 16px; color: white;">
-                <div style="font-size: 12px; font-weight: 700; opacity: 0.9; margin-bottom: 8px;">FEATURED PROGRAM</div>
-                <h3 style="font-size: 18px; font-weight: 700; margin: 0 0 8px 0;">GenAI Mastery</h3>
-                <p style="font-size: 14px; opacity: 0.9; margin: 0 0 16px 0; line-height: 1.4;">Master LLMs, Diffusion Models, and Production Deployment</p>
-                <button style="width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: white; font-weight: 600; cursor: pointer; transition: all 0.25s ease;"
-                        onmouseover="this.style.background='rgba(255,255,255,0.25)'"
-                        onmouseout="this.style.background='rgba(255,255,255,0.15)'">
-                  Explore Program
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="flex-shrink: 0; border-top: 1px solid #f1f5f9; padding: 16px; background: #ffffff; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); z-index: 1002;">
-          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 12px;">
-            <img id="mobileUserAvatar" src="https://via.placeholder.com/56" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid #e2e8f0;">
-            <div style="flex-grow: 1; min-width: 0;">
-              <div id="mobileUserName" style="font-size: 16px; font-weight: 600; color: #1e293b; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Loading...</div>
-              <div id="mobileUserEmail" style="font-size: 14px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Loading...</div>
-            </div>
-          </div>
-          <div onclick="logout()" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: linear-gradient(to right, #fff1f2, #ffe4e6); border-radius: 8px; color: #dc2626; font-weight: 500; cursor: pointer; border: 1px solid #fecaca;">
-            <svg style="width: 20px; height: 20px;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
-            </svg>
-            <span>Sign Out</span>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
-<script>
-function toggleAccordion(element) {
-  const content = element.nextElementSibling;
-  const icon = element.querySelector('.accordion-icon');
-  const isExpanded = content.style.display === 'flex';
-  content.style.display = isExpanded ? 'none' : 'flex';
-  icon.textContent = isExpanded ? '+' : '−';
-  element.setAttribute('aria-expanded', !isExpanded);
-}
-
-function toggleMobileMenu() {
-  const mobileMenu = document.getElementById('mobileMenu');
-  const isOpen = mobileMenu.style.transform === 'translateX(0)';
-  mobileMenu.style.transform = isOpen ? 'translateX(100%)' : 'translateX(0)';
-}
-
-document.getElementById('mobileMenuButton').addEventListener('click', toggleMobileMenu);
-document.getElementById('mobileMenuClose').addEventListener('click', toggleMobileMenu);
-
-function logout() {
-  // Placeholder for logout functionality
-  console.log('User logged out');
-}
-</script>
-    <style>
-      <!-- NAVBAR STYLES -->
-       #featured-program * {
-            all: unset;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-
-        #featured-program {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            border-radius: 12px;
-            padding: 16px;
-            color: white;
-            width: 100%;
-            max-width: 100%; /* Prevent overflow */
-            box-sizing: border-box;
-        }
-
-        #featured-program .label {
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            opacity: 0.9;
-            display: block;
-        }
-
-        #featured-program .title {
-            font-size: 16px; /* Adjusted for better fit */
-            font-weight: 700;
-            margin: 0 0 12px 0;
-            display: block;
-        }
-
-        #featured-program .description {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 24px;
-            line-height: 1.5;
-            display: block;
-            overflow-wrap: break-word;
-        }
-
-        #featured-program .cta-button {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-align: center;
-            display: block;
-        }
-
-        #featured-program .cta-button:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .page-container {
-            margin-left: 130px;
-            margin-right: 130px;
-        }
-
-        button:focus, a:focus {
-            outline: 2px solid #1e40af;
-            outline-offset: 2px;
-        }
-
-        @media (max-width: 768px) {
-            .page-container {
-                margin-left: 3px;
-                margin-right: 3px;
-            }
-            .desktop-only {
-                display: none !important;
-            }
-            .mobile-menu-button {
-                display: block !important;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .mobile-only {
-                display: none !important;
-</style>
-<script>
-    // Mobile Menu Toggle
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-    mobileMenuButton.addEventListener('click', () => {
-      mobileMenu.style.transform = 'translateX(0)';
-    });
-
-    mobileMenuClose.addEventListener('click', () => {
-      mobileMenu.style.transform = 'translateX(100%)';
-    });
-
-    // Profile Dropdown Toggle
-    function toggleDropdown() {
-      const dropdown = document.querySelector('.profile-dropdown');
-      const isVisible = dropdown.style.opacity === '1';
-      dropdown.style.opacity = isVisible ? '0' : '1';
-      dropdown.style.transform = isVisible ? 'translateY(-10px)' : 'translateY(0)';
-      dropdown.style.visibility = isVisible ? 'hidden' : 'visible';
-    }
-
-    // Logout Function (Placeholder)
-    function logout() {
-      console.log('Logout clicked');
-      // Implement logout logic here
-    }
-
-    // New Section: Read More Toggle
-    const readMoreLink = document.querySelector('.read-more-link');
-    const outcomesList = document.querySelector('.outcomes-list');
-    readMoreLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      const isOpen = outcomesList.classList.contains('visible');
-      outcomesList.classList.toggle('visible');
-      readMoreLink.classList.toggle('read-more-link-open');
-      readMoreLink.querySelector('span').textContent = isOpen ? 'Show More' : 'Show Less';
-    });
-
-    // New Section: Accordion Functionality
-    const accordionItems = document.querySelectorAll('.accordion-item');
-    accordionItems.forEach(item => {
-      const header = item.querySelector('.accordion-header');
-      header.addEventListener('click', () => {
-        const isActive = item.classList.contains('active');
-        accordionItems.forEach(i => {
-          i.classList.remove('active');
-          i.querySelector('.accordion-content').style.maxHeight = '0';
-          i.querySelector('.accordion-content').style.opacity = '0';
-          i.querySelector('.accordion-content').style.padding = '0 calc(var(--spacing-unit) * 3)';
-        });
-        if (!isActive) {
-          item.classList.add('active');
-          const content = item.querySelector('.accordion-content');
-          content.style.maxHeight = '600px';
-          content.style.opacity = '1';
-          content.style.padding = 'calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 3)';
-        }
-      });
-    });
-
-    // Placeholder for loadFileData (requires XLSX library)
-    function loadFileData(file) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const data = new Uint8Array(e.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const firstSheet = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[firstSheet];
-        const jsonData = XLSX.utils.sheet_to_json(worksheet);
-        console.log('Parsed Excel Data:', jsonData);
-        // Process jsonData as needed
-      };
-      reader.readAsArrayBuffer(file);
-    }
-
-    // Example: Handle file input for loadFileData
-    // Uncomment and add an input element in HTML if needed
-    /*
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.xlsx,.xls';
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        loadFileData(file);
-      }
-    });
-    document.body.appendChild(fileInput);
-    */
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    <section class="section-image-left">
-    <div class="section-image-left__container">
-      <div class="section-image-left__image-wrapper">
-        <img src="https://d3kl8zsmmx4oop.cloudfront.net/SEO_4be34a6ed1_07b92bff39.webp" alt="SEO Course" class="seo-image-box__image">
-        <div class="section-image-left__buttons-desktop">
-          <div class="seo-image-box__buttons">
-            <button class="seo-btn seo-btn--apply" onclick="startRazorpayPayment()">
-  <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
-  </svg>
-  <span>Apply Now</span>
-</button>
-
-            <button class="seo-btn seo-btn--download">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-3-3m3 3l3-3M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-              </svg>
-              <span>Download Brochure</span>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="section-image-left__content">
-        <div class="seo-course-right">
-          <div class="seo-course-top-bar">
-            <div class="seo-course-title">
-              <label>SEO</label>
-            </div>
-            <div class="seo-course-description">
-              <p>Master the art & science of SEO to boost your website’s ranking on search engines like Google. Learn keyword research, on-page & off-page optimization, technical SEO, and analytics to drive organic traffic.</p>
-            </div>
-            <div class="seo-course-date-time">
-              <div class="seo-course-date-label">Next Batch Starts</div>
-              <div class="seo-course-date-value">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                </svg>
-                <span>15th Nov, 2025</span>
-              </div>
-            </div>
-            <div class="seo-course-mentor">
-              <div class="seo-course-mentor-heading">Mentors</div>
-              <div class="seo-course-mentor-card">
-                <div class="mentor-image-wrapper">
-                  <img class="seo-course-mentor-image" src="https://d3kl8zsmmx4oop.cloudfront.net/mentor_1_b79d7d7c5b.webp" alt="Mentor">
-                </div>
-                <div class="seo-course-mentor-details">
-                  <div class="seo-course-mentor-name">John Doe</div>
-                  <div class="seo-course-mentor-role">SEO Specialist at Google</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="section-image-left__buttons-mobile">
-          <div class="seo-image-box__buttons">
-            <button class="seo-btn seo-btn--apply" onclick="startRazorpayPayment()">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-              <span>Apply Now</span>
-            </button>
-            <button class="seo-btn seo-btn--download">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="none">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v12m0 0l-3-3m3 3l3-3M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-              </svg>
-              <span>Download Brochure</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-<style>
-     /* Existing Section-image-left Styles */
-    .section-image-left {
-      width: 100%;
-      max-width: 1200px;
-      background: linear-gradient(135deg, #001918 0%, #002d2b 100%);
-      margin: 0 auto;
-      border-radius: 16px;
-      color: white;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-      padding: 1rem;
-    }
-    .section-image-left__container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .section-image-left__image-wrapper {
-      width: 100%;
-      position: relative;
-    }
-    .seo-image-box__image {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 5/3;
-      object-fit: cover;
-      border-radius: 12px;
-      transition: transform 0.3s ease;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    }
-    .seo-image-box__buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      width: 100%;
-    }
-    .section-image-left__buttons-mobile {
-      display: block;
-      margin-top: 1rem;
-    }
-    .section-image-left__buttons-desktop {
-      display: none;
-    }
-    .seo-btn {
-      width: 100%;
-      height: 56px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-    .seo-btn--apply {
-      background: #2caa65;
-      color: white;
-    }
-    .seo-btn--download {
-      background: #fffaf1;
-      color: #2d2d2d;
-      border: 1px solid rgba(45, 45, 45, 0.1);
-    }
-    .btn-icon {
-      width: 20px;
-      height: 20px;
-      stroke-width: 2;
-    }
-    .section-image-left__content {
-      padding: 0;
-    }
-    .seo-course-title label {
-      font-size: 2rem;
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.8px;
-      background: linear-gradient(135deg, #fff 0%, #e5e7eb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: block;
-      margin-bottom: 1rem;
-    }
-    .seo-course-description p {
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: #e5e7eb;
-      margin-bottom: 1.5rem;
-    }
-    .seo-course-date-time {
-      margin-bottom: 2rem;
-    }
-    .seo-course-date-label {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: #9ca3af;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.375rem;
-    }
-    .seo-course-date-value {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9375rem;
-      font-weight: 600;
-      color: #fff;
-    }
-    .seo-course-date-value svg {
-      width: 18px;
-      height: 18px;
-      stroke: #2caa65;
-    }
-    .seo-course-mentor-heading {
-      font-size: 0.9375rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      color: #fff;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .seo-course-mentor-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.75rem;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-    .mentor-image-wrapper {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.1);
-    }
-    .seo-course-mentor-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .seo-course-mentor-name {
-      font-weight: 600;
-      font-size: 0.9375rem;
-      letter-spacing: 0.25px;
-    }
-    .seo-course-mentor-role {
-      font-size: 0.8125rem;
-      color: #9ca3af;
-      letter-spacing: 0.25px;
-    }
-    @media (min-width: 768px) {
-      .section-image-left__container {
-        flex-direction: row;
-        gap: 2rem;
-      }
-      .section-image-left__image-wrapper {
-        flex: 0 0 50%;
-      }
-      .section-image-left__buttons-mobile {
-        display: none;
-      }
-      .section-image-left__buttons-desktop {
-        display: block;
-        margin-top: 1rem;
-      }
-      .seo-image-box__buttons {
-        flex-direction: row;
-      }
-      .seo-btn {
-        width: 50%;
-        height: 60px;
-      }
-      .section-image-left__content {
-        padding: 0 0 0 1.5rem;
-      }
-      .seo-course-title label {
-        font-size: 2.25rem;
-      }
-      .seo-course-description p {
-        font-size: 0.9375rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .section-image-left {
-        padding: 2rem;
-      }
-      .section-image-left__container {
-        gap: 3rem;
-      }
-      .seo-image-box__image {
-        height: 300px;
-      }
-      .seo-course-title label {
-        font-size: 2.5rem;
-      }
-    }
-    @media (max-width: 767px) {
-      .section-image-left__container {
-        display: grid;
-        grid-template-rows: auto auto auto;
-      }
-      .seo-image-box__image {
-        grid-row: 1;
-      }
-      .section-image-left__content {
-        grid-row: 2;
-      }
-      .section-image-left__buttons-mobile {
-        grid-row: 3;
-      }
-    }
-    @media (max-width: 480px) {
-      .seo-course-mentor-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .mentor-image-wrapper {
-        width: 40px;
-        height: 40px;
-      }
-    }
-    @media (hover: hover) {
-      .seo-btn:hover {
-        transform: translateY(-2px);
-      }
-      .seo-btn--apply:hover {
-        background: #239a55;
-        box-shadow: 0 8px 16px rgba(44, 170, 101, 0.3);
-      }
-      .seo-btn--download:hover {
-        background: #fffdf8;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      }
-    }
-
-    /* Existing Container Styles */
-    .container {
-      display: flex;
-      gap: 30px;
-      align-items: stretch;
-      width: 100%;
-      max-width: 1200px;
-      padding-top: 40px;
-      margin: 0 auto;
-    }
-    .stack {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 380px;
-    }
-    .statsCard {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      padding: 24px;
-      border-radius: 16px;
-      height: 130px;
-      background-color: #FFFAF1;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-    .statsCard:hover {
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-      transform: translateY(-2px);
-    }
-    .stats-card--text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-    }
-    .stats-card--title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #1a202c;
-      line-height: 1.2;
-    }
-    .stats-card--subtitle {
-      font-size: 15px;
-      color: #4a5568;
-      opacity: 0.9;
-    }
-    .stats-card--image-container {
-      position: relative;
-      width: 100px;
-      height: 100px;
-      align-self: flex-end;
-    }
-    .stats-card--image,
-    .stats-card--hover-image {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      transition: opacity 0.3s ease;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .stats-card--hover-image {
-      opacity: 0;
-    }
-    .statsCard:hover .stats-card--hover-image {
-      opacity: 1;
-    }
-    .statsCard:hover .stats-card--image {
-      opacity: 0;
-    }
-    .bigBox {
-      width: 380px;
-      background-color: #d3e0ff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      padding: 30px;
-      box-sizing: border-box;
-      color: #1a202c;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 28px;
-      line-height: 1.3;
-      user-select: none;
-      transition: all 0.3s ease;
-    }
-    .bigBox:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-    }
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        gap: 16px;
-      }
-      .stack {
-        width: 100%;
-        gap: 16px;
-      }
-      .statsCard,
-      .bigBox {
-        width: 100%;
-        height: auto;
-        min-height: 120px;
-        padding: 20px;
-        flex-direction: row;
-        align-items: center;
-      }
-      .statsCard {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      .stats-card--text {
-        flex: 1;
-        gap: 4px;
-      }
-      .stats-card--title {
-        font-size: 20px;
-      }
-      .stats-card--subtitle {
-        font-size: 14px;
-      }
-      .stats-card--image-container {
-        width: 80px;
-        height: 80px;
-        margin-left: 16px;
-        align-self: center;
-      }
-      .bigBox {
-        font-size: 22px;
-        text-align: center;
-        padding: 24px 20px;
-        order: -1;
-        margin-bottom: 8px;
-      }
-      .stats-card--hover-image.mobile-visible {
-        opacity: 1;
-      }
-      .stats-card--image.mobile-hidden {
-        opacity: 0;
-      }
-    }
-    @media (max-width: 400px) {
-      .stats-card--title {
-        font-size: 18px;
-      }
-      .stats-card--subtitle {
-        font-size: 13px;
-      }
-      .stats-card--image-container {
-        width: 70px;
-        height: 70px;
-      }
-      .bigBox {
-        font-size: 20px;
-      }
-    }
-    </style>
-
-
-
+ 
 
 
 
@@ -1165,146 +261,675 @@ function logout() {
 
 
 
+    <div class="wrap section__container--small">
+        <div class="left-section">
+            <h2 class="section-header">10 Days to AI Expertise</h2>
+            <p class="section-subheading">Explore your personalized learning path, with daily lessons and activities designed to build your AI skills and professional profile.</p>
 
-
-
-     <div class="fotter-padding">
-
-
-    <footer class="aquilla-footer footer css-lt94f6">
-      <div class="aquilla-gridcontainer gridcontainer css-13i3ch5">
-        <div class="aquilla-griditem griditem css-18w0bx7">
-          <div class="css-jxgq5w">
-            <img src="assets/logoo.jpg"
-            alt="Unacademy Logo" loading="lazy" class=
-            "css-1owqn1u">
-            <div class=
-            "p2_variant aquilla-typography typography css-66jn11">
-            Empowering every Student with real-world experience. Join the revolution—launch your future on India's leading internship platform.
+            <div class="accordion-section" role="region" aria-label="Course Curriculum">
+                <h3>Your Course Curriculum</h3>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day1-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 1</span>
+                                <span class="accordion-title-text">Intro to AI & LLMs</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day1-content">
+                            <ul>
+                                <li>Understand AI, ML, DL – differences & real-world use cases</li>
+                                <li>Introduction to LLMs (GPT, Claude, Gemini, etc.)</li>
+                                <li>Tools: ChatGPT, Claude, Perplexity</li>
+                                <li>Video: Simplilearn / freeCodeCamp AI basics</li>
+                                <li>Activity: Try a prompt in ChatGPT, explore outputs</li>
+                            </ul>
+                            <a href="course-day1.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day2-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 2</span>
+                                <span class="accordion-title-text">Prompt Engineering & Use Cases</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day2-content">
+                            <ul>
+                                <li>Prompt structure: clarity, context, roles, examples</li>
+                                <li>Use LLMs for writing, research, summarization, and coding</li>
+                                <li>Tools: ChatGPT Playground, Gemini Advanced</li>
+                                <li>Activity: Create 3 prompts for different use cases</li>
+                            </ul>
+                            <a href="course-day2.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day3-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 3</span>
+                                <span class="accordion-title-text">AI Tools - Video & Audio Generation</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day3-content">
+                            <ul>
+                                <li>Video Tools: Pika Labs, Sora (overview), RunwayML</li>
+                                <li>Audio Tools: ElevenLabs, Murf.ai, Play.ht</li>
+                                <li>Video demo: RunwayML + ElevenLabs</li>
+                                <li>Activity: Generate a voice sample using Murf.ai</li>
+                            </ul>
+                            <a href="course-day3.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day4-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 4</span>
+                                <span class="accordion-title-text">Image Generation & Design AI Tools</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day4-content">
+                            <ul>
+                                <li>Tools: Midjourney, DALL·E, Canva AI, Leonardo</li>
+                                <li>Use AI for thumbnails, posters, reels</li>
+                                <li>Tutorial: Midjourney basics or Canva AI</li>
+                                <li>Activity: Create a poster using Canva AI</li>
+                            </ul>
+                            <a href="course-day4.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day5-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 5</span>
+                                <span class="accordion-title-text">Google AI Tools & Extensions</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day5-content">
+                            <ul>
+                                <li>Tools: NotebookLM, Google Gemini, Docs + AI</li>
+                                <li>Add-ons: YouTube Summary with AI, Compose AI</li>
+                                <li>Explore: NotebookLM / Gemini tips</li>
+                                <li>Activity: Summarize a YouTube video using an AI extension</li>
+                            </ul>
+                            <a href="course-day5.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day6-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 6</span>
+                                <span class="accordion-title-text">Automating Workflows with AI</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day6-content">
+                            <ul>
+                                <li>Tools: Zapier, Bardeen, ChatGPT + Code Interpreter</li>
+                                <li>Concepts: Integrating AI into productivity & projects</li>
+                                <li>Activity: Create a basic automation (Zapier or ChatGPT plugin)</li>
+                            </ul>
+                            <a href="course-day6.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day7-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 7</span>
+                                <span class="accordion-title-text">Resume Fundamentals</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day7-content">
+                            <ul>
+                                <li>ATS-friendly formats, sections (summary, skills, experience)</li>
+                                <li>Tools: Canva resume templates, Novoresume, Rezi.ai</li>
+                                <li>Tutorial: Modern resume building (by career coach)</li>
+                                <li>Activity: Choose a template, draft your resume in Canva/Word</li>
+                            </ul>
+                            <a href="course-day7.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day8-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 8</span>
+                                <span class="accordion-title-text">Tailoring Resume with AI</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day8-content">
+                            <ul>
+                                <li>Tools: ChatGPT resume prompt for job-specific resumes</li>
+                                <li>Upload JD → generate tailored bullet points</li>
+                                <li>Tools: Jobscan, Teal HQ (for keywords)</li>
+                                <li>Activity: Refine resume using AI</li>
+                            </ul>
+                            <a href="course-day8.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day9-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 9</span>
+                                <span class="accordion-title-text">Creating/Optimizing LinkedIn Profile</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day9-content">
+                            <ul>
+                                <li>Sections: Banner, About, Experience, Skills</li>
+                                <li>Tools: ChatGPT to write summary + headlines</li>
+                                <li>Guide: LinkedIn profile tips (2024 edition)</li>
+                                <li>Activity: Update your profile picture + write a new headline & summary</li>
+                            </ul>
+                            <a href="course-day9.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-title">
+                        <div class="accordion-header" role="button" aria-expanded="false" aria-controls="day10-content">
+                            <div class="accordion-header-text">
+                                <span class="accordion-day">Day 10</span>
+                                <span class="accordion-title-text">Growing Your LinkedIn Presence</span>
+                            </div>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                                <path d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="accordion-content" id="day10-content">
+                            <ul>
+                                <li>Creating content using AI (ideas, formatting)</li>
+                                <li>AI tools: Taplio (for posts), ChatGPT post drafts</li>
+                                <li>Strategy: Engage with 5 posts</li>
+                                <li>Activity: Post your first AI-generated LinkedIn post</li>
+                            </ul>
+                            <a href="course-day10.html" class="view-course-button">View Course</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <hr class="css-lm9dzg">
-          <div class="css-194ohqz">
-            <h5 class=
-            "h5_variant aquilla-typography typography css-jbioe5">
-            Reach out to us</h5>
-            <p class=
-            "p2_variant aquilla-typography typography css-66jn11">
-            Get your questions answered about learning with
-            Sync.</p><a href="tel:+91%207799181716" class=
-            "css-1f7ozwz">
-            <svg class="css-a1vwta" fill="none" xmlns=
-            "http://www.w3.org/2000/svg" width="18" height="18"
-            viewbox="0 0 24 24">
-            <path fill-rule="evenodd" clip-rule="evenodd" d=
-            "M10.0479 14.2293C8.87792 13.0593 7.99592 11.7493 7.40992 10.4203C7.28592 10.1393 7.35892 9.81032 7.57592 9.59332L8.39492 8.77432C9.06592 8.10332 9.06592 7.15432 8.47992 6.56832L7.30592 5.39532C6.52492 4.61432 5.25892 4.61432 4.47792 5.39532L3.82592 6.04632C3.08492 6.78732 2.77592 7.85632 2.97592 8.91632C3.46992 11.5293 4.98792 14.3903 7.43692 16.8393C9.88592 19.2883 12.7469 20.8063 15.3599 21.3003C16.4199 21.5003 17.4889 21.1913 18.2299 20.4503L18.8809 19.7993C19.6619 19.0183 19.6619 17.7523 18.8809 16.9713L17.7079 15.7983C17.1219 15.2123 16.1719 15.2123 15.5869 15.7983L14.6839 16.7023C14.4669 16.9193 14.1379 16.9923 13.8569 16.8683C12.5279 16.2813 11.2179 15.3983 10.0479 14.2293Z"
-            stroke="currentcolor" stroke-width="1.125"
-            stroke-linecap="round" stroke-linejoin="round"></path>
-            <path d="M12.9198 5.53043V3.19043" stroke=
-            "currentcolor" stroke-width="1.125" stroke-linecap=
-            "round" stroke-linejoin="round"></path>
-            <path d="M17.0897 7.18053L18.7397 5.54053" stroke=
-            "currentcolor" stroke-width="1.125" stroke-linecap=
-            "round" stroke-linejoin="round"></path>
-            <path d="M18.7499 11.3604H21.0799" stroke=
-            "currentcolor" stroke-width="1.125" stroke-linecap=
-            "round" stroke-linejoin="round"></path></svg> 
-            <div class=
-            "h5_variant aquilla-typography typography css-1uhb9xi">
-            Call +91 7799181716
-            </div></a>
-          </div>
+
+            <div class="contact-section">
+                <h3 class="section-header">Need Support?</h3>
+                <p class="para">Our team is here to help you succeed. Reach out at <a href="mailto:support@ailearningplatform.com">support@ailearningplatform.com</a> for any course-related questions.</p>
+            </div>
         </div>
-        <div class="aquilla-griditem griditem css-612a3e">
-          <div class="css-1k6cs3k">
-            <h5 class=
-            "h5_variant aquilla-typography typography css-bshnsn">
-            Company & Support</h5>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/about" rel="" target="_blank">About Us</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/careers" rel="" target="_blank">Careers</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/contact" rel=
-              "noopener noreferrer" target="_blank">Contact Us</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/faq" rel="" target="_blank">FAQs</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/partnership" rel="" target="_blank">Partnership Program</a>
-            </div>
-          </div>
-          <div class="css-1k6cs3k">
-            <h5 class=
-            "h5_variant aquilla-typography typography css-bshnsn">
-           Policies & Legal</h5>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/privacy-policy" rel="" target="_blank">Privacy Policy</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/terms-and-conditions.html" rel="" target="_blank">Terms & Conditions</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/refund-policy" rel="" target="_blank">Refund Policy</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/user-agreement" rel="" target="_blank">User Agreements</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/cookie-policy" rel="" target="_blank">Cookie Policy</a>
-            </div>
-          </div>
-            <div class="css-1k6cs3k">
-            <h5 class=
-            "h5_variant aquilla-typography typography css-bshnsn">
-           Resources</h5>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/become-instructor" rel="" target="_blank">Become an Instructor</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/free-courses" rel="" target="_blank">Free Courses</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/#" rel="" target="_blank">Learning Resources</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/social-links" rel="" target="_blank">Social Links</a>
-            </div>
-            <div class="css-1gygzac">
-              <a class="css-wcnz4c-StyledAnchor e1hrbfz00" href=
-              "/pages/footer/#" rel="" target="_blank">Student Success Stories</a>
-            </div>
-          </div>   
-        </div>
-      </div>
-      <hr class="css-nf35w8">
-      <div class="css-wxpek7">
-        <div class="css-12au0dw">
-          <div class=
-          "p2_variant aquilla-typography typography css-1lbru7d">
-             <!-- -->2025<!-- --> SyncSkill
-          </div>
-        </div>
-      </div>
-    </footer>
-</div>
 
+        <div class="right-section">
+            <div class="learners-block">
+                <h3 class="section-header">Your Learning Benefits</h3>
+                <ul>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                            <path d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Access to hands-on projects with cutting-edge AI tools
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                            <path d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Expert-led lessons updated for 2025
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2">
+                            <path d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Community support and networking opportunities
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <button class="scroll-to-top" aria-label="Scroll to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"></path>
+        </svg>
+    </button>
+
+
+    <style>
+        .wrap.section__container--small {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 0px;
+            gap: 48px;
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .left-section {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .right-section {
+            width: 40%;
+        }
+
+        .left-section .section-header {
+            color: #1F2937;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.2s;
+        }
+
+        .section-subheading {
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            font-weight: 400;
+            color: #4B5563;
+            max-width: 550px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.3s;
+        }
+
+        .accordion-section {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        .accordion-section:hover {
+            transform: translateY(-4px);
+        }
+
+        .accordion-section h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #4F46E5;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+
+        .accordion-item {
+            margin-bottom: 16px;
+        }
+
+        .accordion-title {
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            background: #FFFFFF;
+            transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-title:hover {
+            background: #F1F5F9;
+            border-color: #4F46E5;
+        }
+
+        .accordion-header {
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .accordion-header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .accordion-day {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #4F46E5;
+        }
+
+        .accordion-title-text {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1F2937;
+        }
+
+        .accordion-header svg {
+            width: 24px;
+            height: 24px;
+            stroke: #4F46E5;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-item.active .accordion-header svg {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 24px;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 600px;
+            padding: 16px 24px;
+            opacity: 1;
+        }
+
+        .accordion-content p, .accordion-content ul {
+            font-size: 1rem;
+            color: #4B5563;
+        }
+
+        .accordion-content ul {
+            list-style: none;
+            padding-left: 16px;
+        }
+
+        .accordion-content li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .accordion-content li::before {
+            content: '•';
+            color: #4F46E5;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        .view-course-button {
+            background: #4F46E5;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 16px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .view-course-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-section {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-section:hover {
+            transform: translateY(-4px);
+        }
+
+        .contact-section .section-header {
+            color: #1F2937;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        .contact-section a {
+            color: #4F46E5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        .para {
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            font-weight: 400;
+            color: #4B5563;
+            max-width: 550px;
+            line-height: 1.6;
+            opacity: 0;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.5s;
+        }
+
+        .learners-block {
+            position: sticky;
+            top: 80px;
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+        }
+
+        .learners-block:hover {
+            transform: translateY(-4px);
+        }
+
+        .learners-block .section-header {
+            color: #1F2937;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.5rem, 4vw, 1.8rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation-delay: 0.4s;
+        }
+
+        .learners-block ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .learners-block li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.875rem;
+            color: #4B5563;
+        }
+
+        .learners-block li svg {
+            stroke: #4F46E5;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4F46E5;
+            color: #FFFFFF;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-4px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .wrap.section__container--small,
+            .section-header,
+            .section-subheading,
+            .accordion-section,
+            .accordion-title,
+            .accordion-content,
+            .contact-section,
+            .learners-block,
+            .scroll-to-top {
+                animation: none;
+                transition: none;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .wrap.section__container--small {
+                flex-direction: column;
+                padding: 32px 16px;
+            }
+
+            .left-section, .right-section {
+                width: 100%;
+            }
+
+            .right-section {
+                display: none;
+            }
+
+            .left-section .section-header {
+                font-size: clamp(1.6rem, 4vw, 2rem);
+            }
+
+            .section-subheading {
+                font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .left-section .section-header {
+                font-size: clamp(1.4rem, 3.5vw, 1.6rem);
+            }
+
+            .accordion-section, .contact-section {
+                padding: 16px;
+            }
+
+            .accordion-section h3 {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement.parentElement;
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.accordion-header').setAttribute('aria-expanded', 'false');
+                });
+                if (!isActive) {
+                    item.classList.add('active');
+                    header.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // Scroll-to-top button
+        const scrollToTop = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+        });
+
+        scrollToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+
+
+
+     
 </body>
 </html>
