@@ -131,10 +131,10 @@
             .stats-section-card--hover-image {
                 opacity: 0;
             }
-            .stats-section-card.is-visible:not(.is-above-midpoint) .stats-section-card--image {
+            .stats-section-card.is-visible:not(.is-above-midpoint) .stats-section-card--hover-image {
                 opacity: 1;
             }
-            .stats-section-card.is-visible.is-above-midpoint .stats-section-card--hover-image {
+            .stats-section-card.is-visible.is-above-midpoint .stats-section-card--image {
                 opacity: 1;
             }
         }
@@ -224,7 +224,7 @@ Show Less</h1>
                 const midpointObserver = new IntersectionObserver(
                     (entries) => {
                         entries.forEach((entry) => {
-                            // When the card's top is above the midpoint, show hover image
+                            // When the card's top is above the midpoint, show normal image
                             card.classList.toggle("is-above-midpoint", entry.isIntersecting);
                         });
                     },
