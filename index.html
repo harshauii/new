@@ -20,6 +20,22 @@
             --easing: cubic-bezier(0.36, 0, 0.66, -0.56);
         }
 
+        body {
+            background: var(--background);
+            margin: 0;
+            padding: calc(var(--spacing-unit) * 4);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .stats-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing-unit) * 3);
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .stats-section-card {
             position: relative;
             background: var(--card-bg);
@@ -30,11 +46,29 @@
             display: flex;
             flex-direction: column;
             gap: calc(var(--spacing-unit) * 1.5);
-            width: 100%;
             box-sizing: border-box;
             overflow: hidden;
             text-decoration: none;
             color: inherit;
+        }
+
+        /* Desktop: Side by side */
+        @media (min-width: 769px) {
+            .stats-section-card {
+                flex: 1 1 calc(50% - calc(var(--spacing-unit) * 1.5));
+                max-width: calc(50% - calc(var(--spacing-unit) * 1.5));
+                padding: calc(var(--spacing-unit) * 5);
+            }
+        }
+
+        /* Mobile: Stacked vertically */
+        @media (max-width: 768px) {
+            .stats-section-card {
+                flex: 1 1 100%;
+                width: 100%;
+                padding: calc(var(--spacing-unit) * 4);
+                border-radius: 16px;
+            }
         }
 
         .stats-section-card:hover, .stats-section-card:focus {
@@ -123,20 +157,9 @@
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
-            .stats-section-card {
-                padding: calc(var(--spacing-unit) * 4);
-                border-radius: 16px;
-            }
             .stats-section-card--image-container {
                 margin-right: -10px;
                 margin-bottom: -20px;
-            }
-        }
-
-        /* Desktop enhancements */
-        @media (min-width: 769px) {
-            .stats-section-card {
-                padding: calc(var(--spacing-unit) * 5);
             }
         }
 
@@ -148,7 +171,8 @@
     </style>
 </head>
 <body>
-    <h1>The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
+    <h1>Key Outcomes
+The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
 
 Understand SEO fundamentals
 Create high-performing, search engine-friendly content
@@ -158,41 +182,31 @@ Drive online sales and engage local customers
 Plan and manage international SEO strategies
 Leverage Generative AI for SEO
 Conduct SEO audits and implement optimizations
-Show Less
-What will you learn?
-MODULE 1
-Fundamentals of SEO & Algorithm
-MODULE 2
-Mastering Content for SEO
-MODULE 3
-Mastering Technical SEO
-MODULE 4
-Mastering Technical SEO - Part 2
-MODULE 5
-Enhancing Link Profile
-MODULE 6
-E-Commerce and Local SEO
-MODULE 7
-International SEO
-MODULE 8
-Executing Everything
-MODULE 9
-Future of SEO
-Still wondering If SEO Mentorship Program is for you?
-First of all, the SEO Mentorship Program is not just for job seekers; it also caters to SEO professionals, digital marketers, performance marketers, brand marketers, copywriters, entrepreneurs, digital marketing managers, and those looking to transition into SEO.
-
-Digital Marketing Managers</h1>
-    <a href="https://example.com" class="stats-section-card" tabindex="0" role="link" aria-label="Multiple projects card, redirects to external site">
-        <div class="stats-section-card--text">
-            <div class="stats-section-card--title">Multiple projects</div>
-            <div class="stats-section-card--subtitle">Learn by doing</div>
-        </div>
-        <div class="stats-section-card--image-container">
-            <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
-            <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder.svg">
-        </div>
-    </a>
-<h1>The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
+Show Less</h1>
+    <section class="stats-section">
+        <a href="https://example.com/project1" class="stats-section-card" tabindex="0" role="link" aria-label="Project One card, redirects to external site">
+            <div class="stats-section-card--text">
+                <div class="stats-section-card--title">Project One</div>
+                <div class="stats-section-card--subtitle">Explore and learn</div>
+            </div>
+            <div class="stats-section-card--image-container">
+                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder.svg">
+                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
+            </div>
+        </a>
+        <a href="https://example.com/project2" class="stats-section-card" tabindex="0" role="link" aria-label="Project Two card, redirects to external site">
+            <div class="stats-section-card--text">
+                <div class="stats-section-card--title">Project Two</div>
+                <div class="stats-section-card--subtitle">Build and grow</div>
+            </div>
+            <div class="stats-section-card--image-container">
+                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="	https://www.growthschool.io/images/course-diff/papers.svg">
+                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="	https://www.growthschool.io/images/course-diff/papers-hover.svg">
+            </div>
+        </a>
+    </section>
+<h1>Key Outcomes
+The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
 
 Understand SEO fundamentals
 Create high-performing, search engine-friendly content
@@ -202,70 +216,49 @@ Drive online sales and engage local customers
 Plan and manage international SEO strategies
 Leverage Generative AI for SEO
 Conduct SEO audits and implement optimizations
-Show Less
-What will you learn?
-MODULE 1
-Fundamentals of SEO & Algorithm
-MODULE 2
-Mastering Content for SEO
-MODULE 3
-Mastering Technical SEO
-MODULE 4
-Mastering Technical SEO - Part 2
-MODULE 5
-Enhancing Link Profile
-MODULE 6
-E-Commerce and Local SEO
-MODULE 7
-International SEO
-MODULE 8
-Executing Everything
-MODULE 9
-Future of SEO
-Still wondering If SEO Mentorship Program is for you?
-First of all, the SEO Mentorship Program is not just for job seekers; it also caters to SEO professionals, digital marketers, performance marketers, brand marketers, copywriters, entrepreneurs, digital marketing managers, and those looking to transition into SEO.
-
-Digital Marketing Managers</h1>
+Show Less</h1>
     <script>
         // Only run Intersection Observers on mobile devices (≤ 768px)
         if (window.matchMedia("(max-width: 768px)").matches) {
-            const card = document.querySelector(".stats-section-card");
+            const cards = document.querySelectorAll(".stats-section-card");
 
-            // Observer 1: Track visibility in viewport
-            const visibilityObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        card.classList.toggle("is-visible", entry.isIntersecting);
-                    });
-                },
-                {
-                    root: null,
-                    threshold: 0.1 // Trigger when 10% of card is visible
-                }
-            );
+            cards.forEach((card) => {
+                // Observer 1: Track visibility in viewport
+                const visibilityObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            card.classList.toggle("is-visible", entry.isIntersecting);
+                        });
+                    },
+                    {
+                        root: null,
+                        threshold: 0.1 // Trigger when 10% of card is visible
+                    }
+                );
 
-            // Observer 2: Track when card's top edge crosses viewport midpoint
-            const midpointObserver = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        // When the card's top is above the midpoint (entry.isIntersecting is true), show hover image
-                        card.classList.toggle("is-above-midpoint", entry.isIntersecting);
-                    });
-                },
-                {
-                    root: null,
-                    rootMargin: "-50% 0px 50% 0px", // Trigger at viewport midpoint
-                    threshold: 0
-                }
-            );
+                // Observer 2: Track when card's top edge crosses viewport midpoint
+                const midpointObserver = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            // When the card's top is above the midpoint, show hover image
+                            card.classList.toggle("is-above-midpoint", entry.isIntersecting);
+                        });
+                    },
+                    {
+                        root: null,
+                        rootMargin: "-50% 0px 50% 0px", // Trigger at viewport midpoint
+                        threshold: 0
+                    }
+                );
 
-            visibilityObserver.observe(card);
-            midpointObserver.observe(card);
+                visibilityObserver.observe(card);
+                midpointObserver.observe(card);
 
-            // Cleanup observers on page unload
-            window.addEventListener("unload", () => {
-                visibilityObserver.disconnect();
-                midpointObserver.disconnect();
+                // Cleanup observers on page unload
+                window.addEventListener("unload", () => {
+                    visibilityObserver.disconnect();
+                    midpointObserver.disconnect();
+                });
             });
         }
     </script>
