@@ -7,19 +7,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
     <style>
         :root {
-            --background: #FAFAFA;
-            --text: #0F172A;
-            --text-secondary: #475569;
-            --primary: #0066FF;
-            --primary-dark: #003087;
-            --card-bg: rgba(255, 255, 255, 0.9);
-            --card-backdrop: blur(12px);
-            --border: rgba(226, 232, 240, 0.5);
-            --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            --glow: 0 0 12px rgba(0, 102, 255, 0.2);
+            --background: #F6F8FA;
+            --text: #0A1122;
+            --text-secondary: #4B5EAA;
+            --primary: #007AFF;
+            --primary-dark: #005BB5;
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-backdrop: blur(16px);
+            --border: rgba(229, 231, 235, 0.6);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --glow: 0 0 16px rgba(0, 122, 255, 0.25);
             --spacing-unit: 8px;
             --font-size-base: 16px;
-            --easing: cubic-bezier(0.33, 1, 0.68, 1);
+            --easing: cubic-bezier(0.36, 0, 0.66, -0.56);
         }
 
         * {
@@ -32,9 +32,10 @@
             font-family: 'Roboto', 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
             background: var(--background);
             color: var(--text);
-            line-height: 1.7;
+            line-height: 1.8;
             font-size: var(--font-size-base);
             font-weight: 400;
+            overscroll-behavior: none;
         }
 
         .mobile-header {
@@ -48,8 +49,8 @@
         }
 
         .mobile-logo {
-            width: 180px;
-            height: 28px;
+            width: 160px;
+            height: 24px;
             display: block;
             margin: 0 auto;
         }
@@ -82,7 +83,7 @@
             letter-spacing: 0.12em;
             margin-bottom: calc(var(--spacing-unit) * 3);
             opacity: 0;
-            animation: slideUp 0.25vw;
+            animation: slideUp 0.8s var(--easing) forwards;
             animation-delay: 0.2s;
         }
 
@@ -90,7 +91,7 @@
             color: var(--text);
             font-size: clamp(2.25rem, 6vw, 3.5rem);
             font-weight: 700;
-            line-height: 1.1;
+            line-height: 1.2;
             margin-bottom: calc(var(--spacing-unit) * 5);
             opacity: 0;
             animation: slideUp 0.8s var(--easing) forwards;
@@ -103,82 +104,84 @@
             color: var(--text-secondary);
             margin-bottom: calc(var(--spacing-unit) * 5);
             opacity: 0;
-            animation: slideUp 0.5s var(--easing) forwards;
+            animation: slideUp 0.8s var(--easing) forwards;
             animation-delay: 0.4s;
         }
 
         .accordion-section {
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            border-radius: 8px;
+            border-radius: 28px;
             padding: calc(var(--spacing-unit) * 5);
             box-shadow: var(--shadow);
-            transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+            transition: transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
         }
 
         .accordion-section:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow), var(--glow);
         }
 
         .accordion-item {
-            margin-bottom: calc(var(--spacing-unit) * 4);
+            margin-bottom: calc(var(--spacing-unit) * 3);
         }
 
         .accordion-title {
-            border: 0;
-            border-radius: 8px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            transition: background 0.4s var(--easing), border-color 0.4s var(--easing), box-shadow 0.3s var(--easing);
+            transition: background 0.5s var(--easing), border-color 0.5s var(--easing), box-shadow 0.5s var(--easing);
         }
 
         .accordion-title:hover {
-            background: rgba(241, 245, 249, 0.8);
+            background: rgba(243, 244, 246, 0.95);
             border-color: var(--primary);
             box-shadow: var(--glow);
         }
 
         .accordion-item.active .accordion-title {
             border-color: var(--primary);
-            background: rgba(248, 250, 252, 0.95);
+            background: rgba(247, 250, 252, 0.98);
             box-shadow: var(--glow);
         }
 
         .accordion-header {
-            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+            padding: calc(var(--spacing-unit) * 3.5) calc(var(--spacing-unit) * 5);
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit) * 0.5);
+            gap: calc(var(--spacing-unit) * 1.5);
             cursor: pointer;
+            position: relative;
+            touch-action: manipulation;
         }
 
         .accordion-header:focus {
             outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2);
         }
 
         .accordion-header-text .day-number {
-            font-size: 1.5rem;
+            font-size: 1.625rem;
             font-weight: 700;
             color: var(--primary);
             line-height: 1.2;
         }
 
         .accordion-header-text h4 {
-            font-size: 1.375rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--text);
         }
 
         .accordion-header svg {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             stroke: var(--primary);
-            transition: transform 0.4s var(--easing);
+            transition: transform 0.5s var(--easing);
             position: absolute;
-            right: calc(var(--spacing-unit) * 4);
-            top: calc(var(--spacing-unit) * 3);
+            right: calc(var(--spacing-unit) * 5);
+            top: calc(var(--spacing-unit) * 3.5);
         }
 
         .accordion-item.active .accordion-header svg {
@@ -188,55 +191,57 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            padding: 0 calc(var(--spacing-unit) * 4);
-            transition: max-height 0.7s var(--easing), padding 0.7s var(--easing), opacity 0.7s var(--easing);
+            padding: 0 calc(var(--spacing-unit) * 5);
+            transition: max-height 0.8s var(--easing), padding 0.8s var(--easing), opacity 0.8s var(--easing);
             opacity: 0;
         }
 
         .accordion-item.active .accordion-content {
-            max-height: 900px;
-            padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 4);
+            max-height: 1000px;
+            padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 5);
             opacity: 1;
         }
 
         .accordion-content p, .accordion-content ul {
             font-size: 1.125rem;
             color: var(--text-secondary);
+            line-height: 1.9;
         }
 
         .accordion-content ul {
             list-style: none;
-            padding-left: calc(var(--spacing-unit) * 3);
+            padding-left: calc(var(--spacing-unit) * 3.5);
         }
 
         .accordion-content li {
             position: relative;
-            padding-left: calc(var(--spacing-unit) * 4);
-            margin-bottom: calc(var(--spacing-unit) * 2);
+            padding-left: calc(var(--spacing-unit) * 4.5);
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
         }
 
         .accordion-content li::before {
             content: '•';
             color: var(--primary);
-            font-size: 2rem;
+            font-size: 2.25rem;
             position: absolute;
             left: 0;
-            top: -6px;
+            top: -8px;
         }
 
         .view-course-btn {
             display: inline-block;
-            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 5);
+            padding: calc(var(--spacing-unit) * 2.25) calc(var(--spacing-unit) * 6);
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: #FFFFFF;
-            border-radius: 12px;
+            border-radius: 14px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.125rem;
-            margin-top: calc(var(--spacing-unit) * 4);
-            transition: background 0.4s var(--easing), transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+            font-size: 1.1875rem;
+            margin-top: calc(var(--spacing-unit) * 5);
+            transition: background 0.5s var(--easing), transform 0.3s var(--easing), box-shadow 0.5s var(--easing);
             position: relative;
             overflow: hidden;
+            touch-action: manipulation;
         }
 
         .view-course-btn::after {
@@ -246,8 +251,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.4s var(--easing);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.5s var(--easing);
         }
 
         .view-course-btn:hover::after {
@@ -256,26 +261,26 @@
 
         .view-course-btn:hover {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            transform: translateY(-3px);
+            transform: scale(1.02);
             box-shadow: var(--glow);
         }
 
         .view-course-btn:focus {
             outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.3);
         }
 
         .contact-section {
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            border-radius: 8px;
+            border-radius: 28px;
             padding: calc(var(--spacing-unit) * 5);
             box-shadow: var(--shadow);
-            transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+            transition: transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
         }
 
         .contact-section:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow), var(--glow);
         }
 
@@ -294,14 +299,14 @@
             top: 140px;
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            border-radius: 8px;
+            border-radius: 28px;
             padding: calc(var(--spacing-unit) * 5);
             box-shadow: var(--shadow);
-            transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+            transition: transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
         }
 
         .learners-block:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             box-shadow: var(--shadow), var(--glow);
         }
 
@@ -309,33 +314,34 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit) * 3);
+            gap: calc(var(--spacing-unit) * 3.5);
             margin-top: calc(var(--spacing-unit) * 4);
         }
 
         .learners-block li {
             display: flex;
             align-items: flex-start;
-            gap: calc(var(--spacing-unit) * 2.5);
-            font-size: 1rem;
+            gap: calc(var(--spacing-unit) * 3);
+            font-size: 1.0625rem;
             color: var(--text-secondary);
+            line-height: 1.9;
         }
 
         .learners-block li img {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             flex-shrink: 0;
-            margin-top: 2px;
+            margin-top: 4px;
         }
 
         .scroll-to-top {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
+            bottom: 48px;
+            right: 48px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: #FFFFFF;
-            width: 64px;
-            height: 64px;
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -343,8 +349,9 @@
             box-shadow: var(--shadow);
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.4s var(--easing), visibility 0.4s var(--easing), transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
+            transition: opacity 0.5s var(--easing), visibility 0.5s var(--easing), transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
             cursor: pointer;
+            touch-action: manipulation;
         }
 
         .scroll-to-top.visible {
@@ -353,17 +360,17 @@
         }
 
         .scroll-to-top:hover {
-            transform: translateY(-6px);
+            transform: scale(1.05);
             box-shadow: var(--shadow), var(--glow);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -388,7 +395,7 @@
         @media (max-width: 992px) {
             .wrap.section__container--small {
                 flex-direction: column;
-                padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 1.5);
+                padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 4);
             }
 
             .left-section, .right-section {
@@ -401,6 +408,7 @@
 
             .mobile-header {
                 display: block;
+                padding: calc(var(--spacing-unit) * 1.5);
             }
 
             .section-header {
@@ -408,70 +416,112 @@
             }
 
             .section-subheading, .para {
-                font-size: 0.9375rem;
-            }
-
-            .pre-header {
-                font-size: 0.875rem;
+                font-size: clamp(1rem, 2.5vw, 1.0625rem);
             }
         }
 
         @media (max-width: 640px) {
+            body {
+                font-size: 17px;
+            }
+
+            .wrap.section__container--small {
+                padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 3);
+            }
+
             .section-header {
-                font-size: clamp(1.5rem, 4.5vw, 1.75rem);
+                font-size: clamp(1.5rem, 4.5vw, 1.875rem);
+                margin-bottom: calc(var(--spacing-unit) * 4);
                 line-height: 1.3;
             }
 
-            .accordion-section, .contact-section {
+            .pre-header {
+                font-size: 0.875rem;
+                margin-bottom: calc(var(--spacing-unit) * 2);
+            }
+
+            .section-subheading, .para {
+                font-size: 1rem;
+                margin-bottom: calc(var(--spacing-unit) * 4);
+                line-height: 1.8;
+            }
+
+            .accordion-section {
                 padding: calc(var(--spacing-unit) * 3);
+                border-radius: 20px;
+            }
+
+            .accordion-item {
+                margin-bottom: calc(var(--spacing-unit) * 2);
+            }
+
+            .accordion-title {
+                border-radius: 16px;
             }
 
             .accordion-header {
-                padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
-            }
-
-            .accordion-header svg {
-                right: calc(var(--spacing-unit) * 2.5);
-                top: calc(var(--spacing-unit) * 2);
-                width: 24px;
-                height: 24px;
+                padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 3.5);
+                gap: calc(var(--spacing-unit));
             }
 
             .accordion-header-text .day-number {
-                font-size: 1.25rem;
-                line-height: 1.2;
+                font-size: 1.375rem;
             }
 
             .accordion-header-text h4 {
-                font-size: 1.125rem;
-                line-height: 1.3;
+                font-size: 1.25rem;
+            }
+
+            .accordion-header svg {
+                width: 28px;
+                height: 28px;
+                right: calc(var(--spacing-unit) * 3.5);
+                top: calc(var(--spacing-unit) * 2.5);
             }
 
             .accordion-content {
-                padding: 0 calc(var(--spacing-unit) * 2.5);
+                padding: 0 calc(var(--spacing-unit) * 3.5);
             }
 
             .accordion-item.active .accordion-content {
-                padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 2.5);
+                padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3.5);
             }
 
             .accordion-content p, .accordion-content ul {
-                font-size: 0.9375rem;
-                line-height: 1.4;
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+
+            .accordion-content ul {
+                padding-left: calc(var(--spacing-unit) * 3);
             }
 
             .accordion-content li {
-                padding-left: calc(var(--spacing-unit) * 3);
-                margin-bottom: calc(var(--spacing-unit) * 1.5);
+                padding-left: calc(var(--spacing-unit) * 4);
+                margin-bottom: calc(var(--spacing-unit) * 2);
             }
 
             .accordion-content li::before {
-                font-size: 1.5rem;
-                top: -4px;
+                font-size: 2rem;
+                top: -6px;
+            }
+
+            .view-course-btn {
+                width: 100%;
+                text-align: center;
+                padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
+                font-size: 1.0625rem;
+                border-radius: 12px;
+                margin-top: calc(var(--spacing-unit) * 4);
+            }
+
+            .contact-section {
+                padding: calc(var(--spacing-unit) * 3);
+                border-radius: 20px;
             }
 
             .mobile-header {
-                padding: calc(var(--spacing-unit) * 1.5);
+                padding: calc(var(--spacing-unit));
             }
 
             .mobile-logo {
@@ -479,12 +529,16 @@
                 height: 22px;
             }
 
-            .view-course-btn {
-                width: 100%;
-                text-align: center;
-                padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 2.5);
-                font-size: 0.9375rem;
-                margin-top: calc(var(--spacing-unit) * 3);
+            .scroll-to-top {
+                bottom: 24px;
+                right: 24px;
+                width: 56px;
+                height: 56px;
+            }
+
+            .scroll-to-top svg {
+                width: 24px;
+                height: 24px;
             }
         }
     </style>
@@ -532,7 +586,7 @@
                                 <h4>Prompt Engineering & Use Cases</h4>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
@@ -554,7 +608,7 @@
                                 <h4>AI Tools for Video & Audio</h4>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
@@ -568,6 +622,7 @@
                         </div>
                     </div>
                 </div>
+                <div>
                 <div class="accordion-item">
                     <div class="accordion-title">
                         <div class="accordion-header" tabindex="0">
@@ -575,8 +630,8 @@
                                 <div class="day-number">Day 4</div>
                                 <h4>Image Generation & Design</h4>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24 stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
@@ -598,7 +653,7 @@
                                 <h4>Google AI Tools & Extensions</h4>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
@@ -619,17 +674,17 @@
                                 <div class="day-number">Day 6</div>
                                 <h4>Automating Workflows with AI</h4>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24" 24 stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
                             <ul>
                                 <li>Tools: Zapier, Bardeen, ChatGPT + Code Interpreter.</li>
-                                <li>Concepts: Integrating AI into productivity and projects.</li>
+                                <li>Concepts: Integrating AI into tools for productivity and projects.</li>
                                 <li>Activity: Create a basic automation with Zapier or ChatGPT plugin.</li>
                             </ul>
-                            <a href="#course-day6" class="view-course-btn">View Course</a>
+                            <a href="#course-day6" ref="view-course-btn">View Course</a>
                         </div>
                     </div>
                 </div>
@@ -638,20 +693,21 @@
                         <div class="accordion-header" tabindex="0">
                             <div class="accordion-header-text">
                                 <div class="day-number">Day 7</div>
-                                <h4>Resume Fundamentals</h4>
+                                <h4>Résumé Fundamentals</h4>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
                             <ul>
                                 <li>Learn ATS-friendly formats and sections (summary, skills, experience).</li>
-                                <li>Tools: Canva resume templates, Novoresume, Rezi.ai.</li>
+                                <li>Tools: Canva resume templates, Novoresume, Rezi.</li>
                                 <li>Tutorial: Modern resume building by a career coach.</li>
                                 <li>Activity: Choose a template and draft your resume in Canva or Word.</li>
                             </ul>
-                            <a href="#course-day7" class="view-course-btn">View Course</a>
+                            <a>
+                            <a href="#course-day7" href="#course-btn">View Course</a>
                         </div>
                     </div>
                 </div>
@@ -663,14 +719,14 @@
                                 <h4>Tailoring Resume with AI</h4>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
                             <ul>
                                 <li>Use ChatGPT resume prompts for job-specific resumes.</li>
-                                <li>Upload job description to generate tailored bullet points.</li>
-                                <li>Tools: Jobscan, Teal HQ for keywords.</li>
+                                <li>Upload job description to AI to generate tailored bullet points.</li>
+                                <li>Tools: Jobscan, Teal HQ for AI.</li>
                                 <li>Activity: Refine resume using AI.</li>
                             </ul>
                             <a href="#course-day8" class="view-course-btn">View Course</a>
@@ -685,15 +741,15 @@
                                 <h4>Creating/Optimizing LinkedIn Profile</h4>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
                             <ul>
                                 <li>Optimize sections: Banner, About, Experience, Skills.</li>
-                                <li>Use ChatGPT to write summary and headlines.</li>
+                                <li>Use ChatGPT to write a summary and headlines for AI.</li>
                                 <li>Guide: LinkedIn profile tips (2024 edition).</li>
-                                <li>Activity: Update profile picture, write new headline and summary.</li>
+                                <li>Activity: Update profile picture, write a new headline, and summary.</li>
                             </ul>
                             <a href="#course-day9" class="view-course-btn">View Course</a>
                         </div>
@@ -706,14 +762,14 @@
                                 <div class="day-number">Day 10</div>
                                 <h4>Growing Your LinkedIn Presence</h4>
                             </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24" 24 stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-join-line="round" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </div>
                         <div class="accordion-content">
                             <ul>
-                                <li>Create content using AI for ideas and formatting.</li>
-                                <li>AI tools: Taplio for posts, ChatGPT post drafts.</li>
+                                <li>Create content using AI for content ideas and formatting.</li>
+                                <li>AI tools: Taplio for AI posts, ChatGPT post drafts.</li>
                                 <li>Strategy: Follow 20 professionals, engage with 5 posts.</li>
                                 <li>Activity: Post your first AI-generated LinkedIn post.</li>
                             </ul>
@@ -725,7 +781,7 @@
 
             <div class="contact-section">
                 <h4>Contact Us</h4>
-                <p class="para">Have questions about the 10-day plan? Reach out to us at <a href="mailto:support@example.com">support@example.com</a> or join our community for more resources.</p>
+                <p class="para">Have questions about the 10-day AI plan? Reach out to us at <a href="mailto:support@example.com">support@example.com</a> or join our community for more resources.</p>
             </div>
         </div>
 
@@ -777,7 +833,7 @@
                 });
 
                 // Add keyboard accessibility
-                header.addEventListener('keydown', (e) => {
+                header.addEventListener('keydown', e => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         header.click();
@@ -788,7 +844,7 @@
             // Scroll-to-top functionality
             const scrollToTop = document.querySelector('.scroll-to-top');
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
+                if (window.scrollY > 600) {
                     scrollToTop.classList.add('visible');
                 } else {
                     scrollToTop.classList.remove('visible');
@@ -803,17 +859,17 @@
             const accordionItems = document.querySelectorAll('.accordion-item');
             accordionItems.forEach(item => {
                 item.setAttribute('draggable', true);
-                item.addEventListener('dragstart', (e) => {
-                    e.dataTransfer.setData('text/plain', item.innerHTML);
+                item.addEventListener('dragstart', e => {
+                    e.dataTransfer.setData('text/html', item.innerHTML);
                     item.classList.add('dragging');
                 });
                 item.addEventListener('dragend', () => {
                     item.classList.remove('dragging');
                 });
-                item.addEventListener('dragover', (e) => {
+                item.addEventListener('dragover', e => {
                     e.preventDefault();
                 });
-                item.addEventListener('drop', (e) => {
+                item.addEventListener('drop', e => {
                     e.preventDefault();
                     const draggedItem = document.querySelector('.dragging');
                     if (draggedItem !== item) {
