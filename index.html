@@ -116,7 +116,7 @@
             .stats-section-card.is-visible:not(.is-above-midpoint) .stats-section-card--image {
                 opacity: 1;
             }
-            .stats-section-card.is-above-midpoint .stats-section-card--hover-image {
+            .stats-section-card.is-visible.is-above-midpoint .stats-section-card--hover-image {
                 opacity: 1;
             }
         }
@@ -248,6 +248,7 @@ Digital Marketing Managers</h1>
             const midpointObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
+                        // When the card's top is above the midpoint (entry.isIntersecting is true), show hover image
                         card.classList.toggle("is-above-midpoint", entry.isIntersecting);
                     });
                 },
