@@ -263,10 +263,10 @@ Digital Marketing Managers</h1>
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            // Card's top edge is above midpoint
+                            // Card's top edge is at or above midpoint: show hover image
                             card.classList.add("is-above-midpoint");
                         } else {
-                            // Card's top edge is below midpoint
+                            // Card's top edge is below midpoint: show default image
                             card.classList.remove("is-above-midpoint");
                         }
                     });
