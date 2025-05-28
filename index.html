@@ -7,14 +7,14 @@
         body {
             background: #F6F8FA;
             margin: 0;
-            padding: 32px; /* calc(8px * 4) */
+            padding: 32px;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
         .stats-section {
             display: flex;
             flex-wrap: wrap;
-            gap: 24px; /* calc(8px * 3) */
+            gap: 24px;
             justify-content: center;
             max-width: 1200px;
             margin: 0 auto;
@@ -24,12 +24,12 @@
             position: relative;
             background: #FFFFFF;
             border-radius: 20px;
-            padding: 16px; /* calc(8px * 2) */
+            padding: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: transform 0.4s cubic-bezier(0.36, 0, 0.66, -0.56), box-shadow 0.4s cubic-bezier(0.36, 0, 0.66, -0.56);
             display: flex;
             flex-direction: column;
-            gap: 8px; /* calc(8px * 1) */
+            gap: 8px;
             box-sizing: border-box;
             overflow: hidden;
             text-decoration: none;
@@ -39,9 +39,9 @@
         /* Desktop: Side by side */
         @media (min-width: 769px) {
             .stats-section-card {
-                flex: 1 1 calc(50% - 12px); /* calc(8px * 1.5) */
+                flex: 1 1 calc(50% - 12px);
                 max-width: calc(50% - 12px);
-                padding: 24px; /* calc(8px * 3) */
+                padding: 24px;
             }
         }
 
@@ -50,7 +50,7 @@
             .stats-section-card {
                 flex: 1 1 100%;
                 width: 100%;
-                padding: 16px; /* calc(8px * 2) */
+                padding: 16px;
                 border-radius: 16px;
             }
         }
@@ -68,7 +68,7 @@
         .stats-section-card--text {
             display: flex;
             flex-direction: column;
-            gap: 4px; /* calc(8px * 0.5) */
+            gap: 4px;
         }
 
         .stats-section-card--title {
@@ -105,21 +105,21 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Desktop: Show hover image by default, normal image on hover */
+        /* Desktop: Show normal image by default, hover image on hover */
         @media (min-width: 769px) {
             .stats-section-card--image {
-                opacity: 0;
+                opacity: 1;
             }
             .stats-section-card--hover-image {
-                opacity: 1;
+                opacity: 0;
             }
             .stats-section-card:hover .stats-section-card--image,
             .stats-section-card:focus .stats-section-card--image {
-                opacity: 1;
+                opacity: 0;
             }
             .stats-section-card:hover .stats-section-card--hover-image,
             .stats-section-card:focus .stats-section-card--hover-image {
-                opacity: 0;
+                opacity: 1;
             }
         }
 
