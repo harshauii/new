@@ -235,7 +235,7 @@ Still wondering If SEO Mentorship Program is for you?
 First of all, the SEO Mentorship Program is not just for job seekers; it also caters to SEO professionals, digital marketers, performance marketers, brand marketers, copywriters, entrepreneurs, digital marketing managers, and those looking to transition into SEO.
 
 Digital Marketing Managers</h1>
-    <script>
+  <script>
         // Only run Intersection Observers on mobile devices (≤ 768px)
         if (window.matchMedia("(max-width: 768px)").matches) {
             const card = document.querySelector(".stats-section-card");
@@ -267,20 +267,15 @@ Digital Marketing Managers</h1>
                         const isScrollingUp = currentScrollY < lastScrollY;
                         lastScrollY = currentScrollY;
 
-                        if (entry.isIntersecting) {
-                            // Card's top edge reaches or is above midpoint
-                            if (isScrollingUp) {
-                                // When scrolling up, show hover image at midpoint
-                                card.classList.add("is-past-midpoint");
-                            } else {
-                                // When scrolling down, remove hover image at midpoint
-                                card.classList.remove("is-past-midpoint");
-                            }
-                        } else if (!isScrollingUp) {
-                            // When scrolling down past midpoint, show default image
+                        if (entry.isIntersecting && isScrollingUp) {
+                            // Scrolling up and top edge reaches midpoint: show hover image
+                            card.classList.add("is-past-midpoint");
+                        } else if (!entry.isIntersecting && !isScrollingUp) {
+                            // Scrolling down past midpoint: show default image
                             card.classList.remove("is-past-midpoint");
                         }
-                        // When scrolling up past midpoint, keep hover image (no action needed)
+                        // If scrolling up past midpoint, keep hover image (no action needed)
+                        // If scrolling down above midpoint, keep hover image (handled by .is-past-midpoint)
                     });
                 },
                 {
