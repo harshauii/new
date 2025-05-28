@@ -37,7 +37,7 @@
             color: inherit;
         }
 
-        .stats-section-card:hover, .stats-section-card:focus, .stats-section-card.is-past-midpoint {
+        .stats-section-card:hover, .stats-section-card:focus, .stats-section-card.is-above-midpoint {
             transform: translateY(-8px);
             box-shadow: var(--shadow), var(--glow);
         }
@@ -90,16 +90,16 @@
             }
         }
 
-        /* Show default image when card is visible but not past midpoint */
-        .stats-section-card.is-visible:not(.is-past-midpoint) .stats-section-card--image {
+        /* Show default image when card is visible but below midpoint */
+        .stats-section-card.is-visible:not(.is-above-midpoint) .stats-section-card--image {
             opacity: 1;
             transform: scale(1);
         }
 
-        /* Show hover image when card crosses midpoint or on hover/focus */
+        /* Show hover image when card is above midpoint or on hover/focus */
         .stats-section-card:hover .stats-section-card--image,
         .stats-section-card:focus .stats-section-card--image,
-        .stats-section-card.is-past-midpoint .stats-section-card--image {
+        .stats-section-card.is-above-midpoint .stats-section-card--image {
             opacity: 0;
             transform: scale(1.05);
         }
@@ -111,7 +111,7 @@
 
         .stats-section-card:hover .stats-section-card--hover-image,
         .stats-section-card:focus .stats-section-card--hover-image,
-        .stats-section-card.is-past-midpoint .stats-section-card--hover-image {
+        .stats-section-card.is-above-midpoint .stats-section-card--hover-image {
             opacity: 1;
             transform: scale(1);
         }
@@ -239,7 +239,6 @@ Digital Marketing Managers</h1>
         // Only run Intersection Observers on mobile devices (≤ 768px)
         if (window.matchMedia("(max-width: 768px)").matches) {
             const card = document.querySelector(".stats-section-card");
-            let lastScrollY = window.scrollY;
 
             // Observer 1: Track visibility in viewport
             const visibilityObserver = new IntersectionObserver(
@@ -249,7 +248,7 @@ Digital Marketing Managers</h1>
                             card.classList.add("is-visible");
                         } else {
                             card.classList.remove("is-visible");
-                            card.classList.remove("is-past-midpoint"); // Reset when out of viewport
+                            card.classList.remove("is-above-midpoint"); // Reset when out of viewport
                         }
                     });
                 },
@@ -259,23 +258,17 @@ Digital Marketing Managers</h1>
                 }
             );
 
-            // Observer 2: Track when card crosses viewport midpoint with scroll direction
+            // Observer 2: Track when card's top edge is above or below viewport midpoint
             const midpointObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
-                        const currentScrollY = window.scrollY;
-                        const isScrollingUp = currentScrollY < lastScrollY;
-                        lastScrollY = currentScrollY;
-
-                        if (entry.isIntersecting && isScrollingUp) {
-                            // Scrolling up and top edge reaches midpoint: show hover image
-                            card.classList.add("is-past-midpoint");
-                        } else if (!entry.isIntersecting && !isScrollingUp) {
-                            // Scrolling down past midpoint: show default image
-                            card.classList.remove("is-past-midpoint");
+                        if (entry.isIntersecting) {
+                            // Card's top edge is above midpoint
+                            card.classList.add("is-above-midpoint");
+                        } else {
+                            // Card's top edge is below midpoint
+                            card.classList.remove("is-above-midpoint");
                         }
-                        // If scrolling up past midpoint, keep hover image (no action needed)
-                        // If scrolling down above midpoint, keep hover image (handled by .is-past-midpoint)
                     });
                 },
                 {
