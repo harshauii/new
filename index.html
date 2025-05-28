@@ -90,8 +90,8 @@
             }
         }
 
-        /* Show default image when card enters viewport but hasn't crossed midpoint */
-        .stats-section-card.is-visible:not(.is-past-midpoint) .stats-section-card--image {
+        /* Show default image when card enters viewport */
+        .stats-section-card.is-visible .stats-section-card--image {
             opacity: 1;
             transform: scale(1);
         }
@@ -157,7 +157,7 @@
     </style>
 </head>
 <body>
-  <h1>The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
+    <h1>The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
 
 Understand SEO fundamentals
 Create high-performing, search engine-friendly content
@@ -201,7 +201,7 @@ Digital Marketing Managers</h1>
             <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
         </div>
     </a>
- <h1>The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
+<h1>The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
 
 Understand SEO fundamentals
 Create high-performing, search engine-friendly content
@@ -244,11 +244,10 @@ Digital Marketing Managers</h1>
             const visibilityObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
+                        if (entry.isIntersecting && !card.classList.contains("is-past-midpoint")) {
                             card.classList.add("is-visible");
-                        } else {
+                        } else if (!entry.isIntersecting) {
                             card.classList.remove("is-visible");
-                            card.classList.remove("is-past-midpoint"); // Reset both classes when out of viewport
                         }
                     });
                 },
@@ -265,9 +264,9 @@ Digital Marketing Managers</h1>
                         if (entry.isIntersecting) {
                             card.classList.add("is-past-midpoint");
                             card.classList.remove("is-visible"); // Ensure default image is hidden
-                        } else if (entry.boundingClientRect.top > window.innerHeight / 2) {
-                            // If scrolling back up above midpoint, show default image if still in viewport
+                        } else {
                             card.classList.remove("is-past-midpoint");
+                            // Re-show default image if still in viewport
                             if (visibilityObserver.takeRecords().some(e => e.isIntersecting)) {
                                 card.classList.add("is-visible");
                             }
