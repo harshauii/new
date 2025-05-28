@@ -239,6 +239,7 @@ Digital Marketing Managers</h1>
         // Only run Intersection Observers on mobile devices (≤ 768px)
         if (window.matchMedia("(max-width: 768px)").matches) {
             const card = document.querySelector(".stats-section-card");
+            let lastScrollY = window.scrollY;
 
             // Observer 1: Track visibility in viewport
             const visibilityObserver = new IntersectionObserver(
@@ -258,15 +259,28 @@ Digital Marketing Managers</h1>
                 }
             );
 
-            // Observer 2: Track when card crosses viewport midpoint
+            // Observer 2: Track when card crosses viewport midpoint with scroll direction
             const midpointObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
+                        const currentScrollY = window.scrollY;
+                        const isScrollingUp = currentScrollY < lastScrollY;
+                        lastScrollY = currentScrollY;
+
                         if (entry.isIntersecting) {
-                            card.classList.add("is-past-midpoint");
-                        } else {
+                            // Card's top edge reaches or is above midpoint
+                            if (isScrollingUp) {
+                                // When scrolling up, show hover image at midpoint
+                                card.classList.add("is-past-midpoint");
+                            } else {
+                                // When scrolling down, remove hover image at midpoint
+                                card.classList.remove("is-past-midpoint");
+                            }
+                        } else if (!isScrollingUp) {
+                            // When scrolling down past midpoint, show default image
                             card.classList.remove("is-past-midpoint");
                         }
+                        // When scrolling up past midpoint, keep hover image (no action needed)
                     });
                 },
                 {
