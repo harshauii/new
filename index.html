@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10-Day AI & Career Growth Plan</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
     <style>
         :root {
             --background: #F6F8FA;
@@ -12,7 +10,7 @@
             --text-secondary: #4B5EAA;
             --primary: #007AFF;
             --primary-dark: #005BB5;
-            --card-bg: rgba(255, 255, 255, 0.92);
+            --card-bg: #FFFFFF;
             --card-backdrop: blur(16px);
             --border: rgba(229, 231, 235, 0.6);
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -22,870 +20,237 @@
             --easing: cubic-bezier(0.36, 0, 0.66, -0.56);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.8;
-            font-size: var(--font-size-base);
-            font-weight: 400;
-            overscroll-behavior: none;
-        }
-
-        .mobile-header {
-            display: none;
-            text-align: center;
-            padding: calc(var(--spacing-unit) * 2);
+        .stats-section-card {
+            position: relative;
             background: var(--card-bg);
-            backdrop-filter: var(--card-backdrop);
-            border-bottom: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        .mobile-logo {
-            width: 160px;
-            height: 24px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .wrap.section__container--small {
-            display: flex;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: calc(var(--spacing-unit) * 12) calc(var(--spacing-unit) * 4);
-            gap: calc(var(--spacing-unit) * 10);
-            animation: fadeIn 1.2s var(--easing);
-        }
-
-        .left-section {
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--spacing-unit) * 6);
-        }
-
-        .right-section {
-            width: 40%;
-        }
-
-        .pre-header {
-            color: var(--primary);
-            font-size: 0.9375rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: calc(var(--spacing-unit) * 3);
-            opacity: 0;
-            animation: slideUp 0.8s var(--easing) forwards;
-            animation-delay: 0.2s;
-        }
-
-        .section-header {
-            color: var(--text);
-            font-size: clamp(2.25rem, 6vw, 3.5rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: calc(var(--spacing-unit) * 5);
-            opacity: 0;
-            animation: slideUp 0.8s var(--easing) forwards;
-            animation-delay: 0.3s;
-        }
-
-        .section-subheading, .para {
-            font-size: clamp(1.0625rem, 2.5vw, 1.1875rem);
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: calc(var(--spacing-unit) * 5);
-            opacity: 0;
-            animation: slideUp 0.8s var(--easing) forwards;
-            animation-delay: 0.4s;
-        }
-
-        .accordion-section {
-            background: var(--card-bg);
-            backdrop-filter: var(--card-backdrop);
-            border-radius: 28px;
-            padding: calc(var(--spacing-unit) * 5);
-            box-shadow: var(--shadow);
-            transition: transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
-        }
-
-        .accordion-section:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow), var(--glow);
-        }
-
-        .accordion-item {
-            margin-bottom: calc(var(--spacing-unit) * 3);
-        }
-
-        .accordion-title {
-            border: 1px solid var(--border);
             border-radius: 20px;
-            background: var(--card-bg);
-            backdrop-filter: var(--card-backdrop);
-            transition: background 0.5s var(--easing), border-color 0.5s var(--easing), box-shadow 0.5s var(--easing);
-        }
-
-        .accordion-title:hover {
-            background: rgba(243, 244, 246, 0.95);
-            border-color: var(--primary);
-            box-shadow: var(--glow);
-        }
-
-        .accordion-item.active .accordion-title {
-            border-color: var(--primary);
-            background: rgba(247, 250, 252, 0.98);
-            box-shadow: var(--glow);
-        }
-
-        .accordion-header {
-            padding: calc(var(--spacing-unit) * 3.5) calc(var(--spacing-unit) * 5);
+            padding: calc(var(--spacing-unit) * 4);
+            box-shadow: var(--shadow);
+            transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
             display: flex;
             flex-direction: column;
             gap: calc(var(--spacing-unit) * 1.5);
-            cursor: pointer;
-            position: relative;
-            touch-action: manipulation;
+            width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .accordion-header:focus {
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2);
+        .stats-section-card:hover, .stats-section-card:focus, .stats-section-card.is-past-midpoint {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow), var(--glow);
         }
 
-        .accordion-header-text .day-number {
-            font-size: 1.625rem;
-            font-weight: 700;
-            color: var(--primary);
+        .stats-section-card--text {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--spacing-unit) * 0.75);
+        }
+
+        .stats-section-card--title {
+            font-size: clamp(1.25rem, 5vw, 1.5rem);
+            color: var(--text);
+            font-weight: 600;
             line-height: 1.2;
         }
 
-        .accordion-header-text h4 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .accordion-header svg {
-            width: 36px;
-            height: 36px;
-            stroke: var(--primary);
-            transition: transform 0.5s var(--easing);
-            position: absolute;
-            right: calc(var(--spacing-unit) * 5);
-            top: calc(var(--spacing-unit) * 3.5);
-        }
-
-        .accordion-item.active .accordion-header svg {
-            transform: rotate(180deg);
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 calc(var(--spacing-unit) * 5);
-            transition: max-height 0.8s var(--easing), padding 0.8s var(--easing), opacity 0.8s var(--easing);
-            opacity: 0;
-        }
-
-        .accordion-item.active .accordion-content {
-            max-height: 1000px;
-            padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 5);
-            opacity: 1;
-        }
-
-        .accordion-content p, .accordion-content ul {
-            font-size: 1.125rem;
+        .stats-section-card--subtitle {
+            font-size: clamp(0.875rem, 4vw, 1rem);
             color: var(--text-secondary);
-            line-height: 1.9;
+            line-height: 1.5;
         }
 
-        .accordion-content ul {
-            list-style: none;
-            padding-left: calc(var(--spacing-unit) * 3.5);
-        }
-
-        .accordion-content li {
+        .stats-section-card--image-container {
             position: relative;
-            padding-left: calc(var(--spacing-unit) * 4.5);
-            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            width: clamp(120px, 40vw, 171px);
+            height: clamp(65px, 20vw, 93.25px);
+            align-self: flex-end;
+            will-change: transform;
         }
 
-        .accordion-content li::before {
-            content: '•';
-            color: var(--primary);
-            font-size: 2.25rem;
+        .stats-section-card--image,
+        .stats-section-card--hover-image {
             position: absolute;
-            left: 0;
-            top: -8px;
-        }
-
-        .view-course-btn {
-            display: inline-block;
-            padding: calc(var(--spacing-unit) * 2.25) calc(var(--spacing-unit) * 6);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: #FFFFFF;
-            border-radius: 14px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1875rem;
-            margin-top: calc(var(--spacing-unit) * 5);
-            transition: background 0.5s var(--easing), transform 0.3s var(--easing), box-shadow 0.5s var(--easing);
-            position: relative;
-            overflow: hidden;
-            touch-action: manipulation;
-        }
-
-        .view-course-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+            bottom: 0;
+            right: 0;
+            margin-right: -15px;
+            margin-bottom: -30px;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-            transition: left 0.5s var(--easing);
+            object-fit: contain;
+            transition: opacity 0.3s ease, transform 0.3s var(--easing);
         }
 
-        .view-course-btn:hover::after {
-            left: 100%;
+        /* Initially hide both images in mobile view */
+        @media (max-width: 768px) {
+            .stats-section-card--image,
+            .stats-section-card--hover-image {
+                opacity: 0;
+            }
         }
 
-        .view-course-btn:hover {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            transform: scale(1.02);
-            box-shadow: var(--glow);
-        }
-
-        .view-course-btn:focus {
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.3);
-        }
-
-        .contact-section {
-            background: var(--card-bg);
-            backdrop-filter: var(--card-backdrop);
-            border-radius: 28px;
-            padding: calc(var(--spacing-unit) * 5);
-            box-shadow: var(--shadow);
-            transition: transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
-        }
-
-        .contact-section:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow), var(--glow);
-        }
-
-        .contact-section a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-section a:hover {
-            text-decoration: underline;
-        }
-
-        .learners-block {
-            position: sticky;
-            top: 140px;
-            background: var(--card-bg);
-            backdrop-filter: var(--card-backdrop);
-            border-radius: 28px;
-            padding: calc(var(--spacing-unit) * 5);
-            box-shadow: var(--shadow);
-            transition: transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
-        }
-
-        .learners-block:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow), var(--glow);
-        }
-
-        .learners-block ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: calc(var(--spacing-unit) * 3.5);
-            margin-top: calc(var(--spacing-unit) * 4);
-        }
-
-        .learners-block li {
-            display: flex;
-            align-items: flex-start;
-            gap: calc(var(--spacing-unit) * 3);
-            font-size: 1.0625rem;
-            color: var(--text-secondary);
-            line-height: 1.9;
-        }
-
-        .learners-block li img {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-            margin-top: 4px;
-        }
-
-        .scroll-to-top {
-            position: fixed;
-            bottom: 48px;
-            right: 48px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: #FFFFFF;
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s var(--easing), visibility 0.5s var(--easing), transform 0.5s var(--easing), box-shadow 0.5s var(--easing);
-            cursor: pointer;
-            touch-action: manipulation;
-        }
-
-        .scroll-to-top.visible {
+        /* Show default image when card enters viewport but hasn't crossed midpoint */
+        .stats-section-card.is-visible:not(.is-past-midpoint) .stats-section-card--image {
             opacity: 1;
-            visibility: visible;
+            transform: scale(1);
         }
 
-        .scroll-to-top:hover {
+        /* Show hover image when card crosses midpoint or on hover/focus */
+        .stats-section-card:hover .stats-section-card--image,
+        .stats-section-card:focus .stats-section-card--image,
+        .stats-section-card.is-past-midpoint .stats-section-card--image {
+            opacity: 0;
             transform: scale(1.05);
-            box-shadow: var(--shadow), var(--glow);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+        .stats-section-card--hover-image {
+            opacity: 0;
+            transform: scale(0.95);
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .stats-section-card:hover .stats-section-card--hover-image,
+        .stats-section-card:focus .stats-section-card--hover-image,
+        .stats-section-card.is-past-midpoint .stats-section-card--hover-image {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .wrap.section__container--small,
-            .pre-header,
-            .section-header,
-            .section-subheading,
-            .accordion-section,
-            .accordion-title,
-            .accordion-content,
-            .contact-section,
-            .learners-block,
-            .scroll-to-top,
-            .view-course-btn,
-            .view-course-btn::after {
-                animation: none;
-                transition: none;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .wrap.section__container--small {
-                flex-direction: column;
-                padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 4);
-            }
-
-            .left-section, .right-section {
-                width: 100%;
-            }
-
-            .right-section {
-                display: none;
-            }
-
-            .mobile-header {
-                display: block;
-                padding: calc(var(--spacing-unit) * 1.5);
-            }
-
-            .section-header {
-                font-size: clamp(1.75rem, 5vw, 2rem);
-            }
-
-            .section-subheading, .para {
-                font-size: clamp(1rem, 2.5vw, 1.0625rem);
-            }
-        }
-
-        @media (max-width: 640px) {
-            body {
-                font-size: 17px;
-            }
-
-            .wrap.section__container--small {
-                padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 3);
-            }
-
-            .section-header {
-                font-size: clamp(1.5rem, 4.5vw, 1.875rem);
-                margin-bottom: calc(var(--spacing-unit) * 4);
-                line-height: 1.3;
-            }
-
-            .pre-header {
-                font-size: 0.875rem;
-                margin-bottom: calc(var(--spacing-unit) * 2);
-            }
-
-            .section-subheading, .para {
-                font-size: 1rem;
-                margin-bottom: calc(var(--spacing-unit) * 4);
-                line-height: 1.8;
-            }
-
-            .accordion-section {
-                padding: calc(var(--spacing-unit) * 3);
-                border-radius: 20px;
-            }
-
-            .accordion-item {
-                margin-bottom: calc(var(--spacing-unit) * 2);
-            }
-
-            .accordion-title {
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .stats-section-card {
+                padding: calc(var(--spacing-unit) * 4);
                 border-radius: 16px;
             }
 
-            .accordion-header {
-                padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 3.5);
-                gap: calc(var(--spacing-unit));
+            .stats-section-card--image-container {
+                margin-right: -10px;
+                margin-bottom: -20px;
+            }
+        }
+
+        /* Desktop enhancements */
+        @media (min-width: 769px) {
+            .stats-section-card {
+                padding: calc(var(--spacing-unit) * 5);
             }
 
-            .accordion-header-text .day-number {
-                font-size: 1.375rem;
+            /* Ensure default image is visible by default on desktop */
+            .stats-section-card--image {
+                opacity: 1;
+                transform: scale(1);
             }
+        }
 
-            .accordion-header-text h4 {
-                font-size: 1.25rem;
-            }
+        /* Accessibility */
+        .stats-section-card:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
 
-            .accordion-header svg {
-                width: 28px;
-                height: 28px;
-                right: calc(var(--spacing-unit) * 3.5);
-                top: calc(var(--spacing-unit) * 2.5);
-            }
-
-            .accordion-content {
-                padding: 0 calc(var(--spacing-unit) * 3.5);
-            }
-
-            .accordion-item.active .accordion-content {
-                padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3.5);
-            }
-
-            .accordion-content p, .accordion-content ul {
-                font-size: 1rem;
-                line-height: 1.8;
-            }
-
-            .accordion-content ul {
-                padding-left: calc(var(--spacing-unit) * 3);
-            }
-
-            .accordion-content li {
-                padding-left: calc(var(--spacing-unit) * 4);
-                margin-bottom: calc(var(--spacing-unit) * 2);
-            }
-
-            .accordion-content li::before {
-                font-size: 2rem;
-                top: -6px;
-            }
-
-            .view-course-btn {
-                width: 100%;
-                text-align: center;
-                padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
-                font-size: 1.0625rem;
-                border-radius: 12px;
-                margin-top: calc(var(--spacing-unit) * 4);
-            }
-
-            .contact-section {
-                padding: calc(var(--spacing-unit) * 3);
-                border-radius: 20px;
-            }
-
-            .mobile-header {
-                padding: calc(var(--spacing-unit));
-            }
-
-            .mobile-logo {
-                width: 140px;
-                height: 22px;
-            }
-
-            .scroll-to-top {
-                bottom: 24px;
-                right: 24px;
-                width: 56px;
-                height: 56px;
-            }
-
-            .scroll-to-top svg {
-                width: 24px;
-                height: 24px;
+        /* Touch devices: Allow scroll-based image swap */
+        @media (hover: none) and (max-width: 768px) {
+            .stats-section-card--hover-image {
+                display: block;
             }
         }
     </style>
 </head>
 <body>
-    <header class="mobile-header">
-        <img src="https://via.placeholder.com/200x30" alt="Logo" class="mobile-logo">
-    </header>
+  <h1>The SEO Mentorship Program is an 8-week intensive course designed to teach participants the steps to dominate search rankings and boost online visibility through proven methods and strategies. This program provides guided learning from industry experts, combining self-paced videos and live sessions to master SEO concepts hands-on.
 
-    <div class="wrap section__container--small">
-        <div class="left-section">
-            <div class="pre-header">10-Day Learning Plan</div>
-            <h1 class="section-header">Master AI & Career Growth</h1>
-            <p class="section-subheading">A structured 10-day plan to learn AI tools, resume building, and LinkedIn optimization.</p>
+Understand SEO fundamentals
+Create high-performing, search engine-friendly content
+Improve technical aspects of websites
+Enhance website link profiles with ethical practices
+Drive online sales and engage local customers
+Plan and manage international SEO strategies
+Leverage Generative AI for SEO
+Conduct SEO audits and implement optimizations
+Show Less
+What will you learn?
+MODULE 1
+Fundamentals of SEO & Algorithm
+MODULE 2
+Mastering Content for SEO
+MODULE 3
+Mastering Technical SEO
+MODULE 4
+Mastering Technical SEO - Part 2
+MODULE 5
+Enhancing Link Profile
+MODULE 6
+E-Commerce and Local SEO
+MODULE 7
+International SEO
+MODULE 8
+Executing Everything
+MODULE 9
+Future of SEO
+Still wondering If SEO Mentorship Program is for you?
+First of all, the SEO Mentorship Program is not just for job seekers; it also caters to SEO professionals, digital marketers, performance marketers, brand marketers, copywriters, entrepreneurs, digital marketing managers, and those looking to transition into SEO.
 
-            <div class="accordion-section">
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 1</div>
-                                <h4>Intro to AI & LLMs</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Learn what AI, ML, and DL are, their differences, and real-world use cases.</li>
-                                <li>Introduction to LLMs like GPT, Claude, and Gemini.</li>
-                                <li>Tools: ChatGPT, Claude, Perplexity.</li>
-                                <li>Video: Watch Simplilearn or freeCodeCamp AI basics.</li>
-                                <li>Activity: Try a prompt in ChatGPT and explore outputs.</li>
-                            </ul>
-                            <a href="#course-day1" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 2</div>
-                                <h4>Prompt Engineering & Use Cases</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Understand prompt structure: clarity, context, roles, and examples.</li>
-                                <li>Use LLMs for writing, research, summarization, and coding.</li>
-                                <li>Tools: ChatGPT Playground, Gemini Advanced.</li>
-                                <li>Activity: Create 3 prompts for different use cases.</li>
-                            </ul>
-                            <a href="#course-day2" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 3</div>
-                                <h4>AI Tools for Video & Audio</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Explore video tools: Pika Labs, Sora (overview), RunwayML.</li>
-                                <li>Explore audio tools: ElevenLabs, Murf.ai, Play.ht.</li>
-                                <li>Video: Watch RunwayML + ElevenLabs demo.</li>
-                                <li>Activity: Generate a voice sample using Murf.ai.</li>
-                            </ul>
-                            <a href="#course-day3" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 4</div>
-                                <h4>Image Generation & Design</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24 stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Tools: Midjourney, DALL·E, Canva AI, Leonardo.</li>
-                                <li>Use AI for thumbnails, posters, and reels.</li>
-                                <li>Tutorial: Midjourney basics or Canva AI.</li>
-                                <li>Activity: Create a poster using Canva AI.</li>
-                            </ul>
-                            <a href="#course-day4" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 5</div>
-                                <h4>Google AI Tools & Extensions</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Tools: NotebookLM, Google Gemini, Docs + AI.</li>
-                                <li>Add-ons: YouTube Summary with AI, Compose AI.</li>
-                                <li>Explore NotebookLM and Gemini tips.</li>
-                                <li>Activity: Summarize a YouTube video using an AI extension.</li>
-                            </ul>
-                            <a href="#course-day5" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 6</div>
-                                <h4>Automating Workflows with AI</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24" 24 stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Tools: Zapier, Bardeen, ChatGPT + Code Interpreter.</li>
-                                <li>Concepts: Integrating AI into tools for productivity and projects.</li>
-                                <li>Activity: Create a basic automation with Zapier or ChatGPT plugin.</li>
-                            </ul>
-                            <a href="#course-day6" ref="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 7</div>
-                                <h4>Résumé Fundamentals</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Learn ATS-friendly formats and sections (summary, skills, experience).</li>
-                                <li>Tools: Canva resume templates, Novoresume, Rezi.</li>
-                                <li>Tutorial: Modern resume building by a career coach.</li>
-                                <li>Activity: Choose a template and draft your resume in Canva or Word.</li>
-                            </ul>
-                            <a>
-                            <a href="#course-day7" href="#course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 8</div>
-                                <h4>Tailoring Resume with AI</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Use ChatGPT resume prompts for job-specific resumes.</li>
-                                <li>Upload job description to AI to generate tailored bullet points.</li>
-                                <li>Tools: Jobscan, Teal HQ for AI.</li>
-                                <li>Activity: Refine resume using AI.</li>
-                            </ul>
-                            <a href="#course-day8" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 9</div>
-                                <h4>Creating/Optimizing LinkedIn Profile</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Optimize sections: Banner, About, Experience, Skills.</li>
-                                <li>Use ChatGPT to write a summary and headlines for AI.</li>
-                                <li>Guide: LinkedIn profile tips (2024 edition).</li>
-                                <li>Activity: Update profile picture, write a new headline, and summary.</li>
-                            </ul>
-                            <a href="#course-day9" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <div class="accordion-title">
-                        <div class="accordion-header" tabindex="0">
-                            <div class="accordion-header-text">
-                                <div class="day-number">Day 10</div>
-                                <h4>Growing Your LinkedIn Presence</h4>
-                            </div>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24" 24 stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-join-line="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </div>
-                        <div class="accordion-content">
-                            <ul>
-                                <li>Create content using AI for content ideas and formatting.</li>
-                                <li>AI tools: Taplio for AI posts, ChatGPT post drafts.</li>
-                                <li>Strategy: Follow 20 professionals, engage with 5 posts.</li>
-                                <li>Activity: Post your first AI-generated LinkedIn post.</li>
-                            </ul>
-                            <a href="#course-day10" class="view-course-btn">View Course</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="contact-section">
-                <h4>Contact Us</h4>
-                <p class="para">Have questions about the 10-day AI plan? Reach out to us at <a href="mailto:support@example.com">support@example.com</a> or join our community for more resources.</p>
-            </div>
+Digital Marketing Managers</h1>
+    <a href="https://example.com" class="stats-section-card" tabindex="0" role="link" aria-label="Multiple projects card, redirects to external site">
+        <div class="stats-section-card--text">
+            <div class="stats-section-card--title">Multiple projects</div>
+            <div class="stats-section-card--subtitle">Learn by doing</div>
         </div>
-
-        <div class="right-section">
-            <div class="learners-block">
-                <h4>Why Join This Plan?</h4>
-                <ul>
-                    <li>
-                        <img src="https://www.growthschool.io/images/new/tick.svg" alt="Tick">
-                        Gain hands-on experience with cutting-edge AI tools.
-                    </li>
-                    <li>
-                        <img src="https://www.growthschool.io/images/new/tick.svg" alt="Tick">
-                        Build a professional resume tailored to your dream job.
-                    </li>
-                    <li>
-                        <img src="https://www.growthschool.io/images/new/tick.svg" alt="Tick">
-                        Optimize your LinkedIn to stand out to recruiters.
-                    </li>
-                    <li>
-                        <img src="https://www.growthschool.io/images/new/tick.svg" alt="Tick">
-                        Learn to automate workflows for productivity.
-                    </li>
-                </ul>
-            </div>
+        <div class="stats-section-card--image-container">
+            <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder.svg">
+            <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
         </div>
-    </div>
-
-    <div class="scroll-to-top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </div>
+    </a>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Accordion functionality
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const accordionItem = header.parentElement.parentElement;
-                    const isActive = accordionItem.classList.contains('active');
-                    document.querySelectorAll('.accordion-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    if (!isActive) {
-                        accordionItem.classList.add('active');
-                    }
-                });
+        // Only run Intersection Observers on mobile devices (≤ 768px)
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            const card = document.querySelector(".stats-section-card");
 
-                // Add keyboard accessibility
-                header.addEventListener('keydown', e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        header.click();
-                    }
-                });
-            });
-
-            // Scroll-to-top functionality
-            const scrollToTop = document.querySelector('.scroll-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 600) {
-                    scrollToTop.classList.add('visible');
-                } else {
-                    scrollToTop.classList.remove('visible');
-                }
-            });
-
-            scrollToTop.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // Drag-and-drop functionality
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            accordionItems.forEach(item => {
-                item.setAttribute('draggable', true);
-                item.addEventListener('dragstart', e => {
-                    e.dataTransfer.setData('text/html', item.innerHTML);
-                    item.classList.add('dragging');
-                });
-                item.addEventListener('dragend', () => {
-                    item.classList.remove('dragging');
-                });
-                item.addEventListener('dragover', e => {
-                    e.preventDefault();
-                });
-                item.addEventListener('drop', e => {
-                    e.preventDefault();
-                    const draggedItem = document.querySelector('.dragging');
-                    if (draggedItem !== item) {
-                        const allItems = Array.from(accordionItems);
-                        const draggedIndex = allItems.indexOf(draggedItem);
-                        const dropIndex = allItems.indexOf(item);
-                        const parent = draggedItem.parentElement;
-                        if (draggedIndex < dropIndex) {
-                            parent.insertBefore(draggedItem, item.nextSibling);
+            // Observer 1: Show default image when card enters viewport
+            const visibilityObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            card.classList.add("is-visible");
                         } else {
-                            parent.insertBefore(draggedItem, item);
+                            card.classList.remove("is-visible");
+                            card.classList.remove("is-past-midpoint"); // Reset both classes when out of viewport
                         }
-                    }
-                });
-            });
-        });
+                    });
+                },
+                {
+                    root: null, // Use viewport as root
+                    threshold: 0 // Trigger when any part of card is visible
+                }
+            );
+
+            // Observer 2: Show hover image when card crosses viewport midpoint
+            const midpointObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            card.classList.add("is-past-midpoint");
+                            card.classList.remove("is-visible"); // Ensure default image is hidden
+                        } else if (entry.boundingClientRect.top > window.innerHeight / 2) {
+                            // If scrolling back up above midpoint, show default image if still in viewport
+                            card.classList.remove("is-past-midpoint");
+                            if (visibilityObserver.takeRecords().some(e => e.isIntersecting)) {
+                                card.classList.add("is-visible");
+                            }
+                        }
+                    });
+                },
+                {
+                    root: null, // Use viewport as root
+                    rootMargin: "-50% 0px", // Trigger when top of card reaches viewport midpoint
+                    threshold: 0 // Trigger as soon as any part crosses the rootMargin
+                }
+            );
+
+            visibilityObserver.observe(card);
+            midpointObserver.observe(card);
+        }
     </script>
 </body>
 </html>
