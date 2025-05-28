@@ -40,12 +40,12 @@
             position: relative;
             background: var(--card-bg);
             border-radius: 20px;
-            padding: calc(var(--spacing-unit) * 4);
+            padding: calc(var(--spacing-unit) * 2); /* Reduced padding to decrease card height */
             box-shadow: var(--shadow);
             transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit) * 1.5);
+            gap: calc(var(--spacing-unit) * 1); /* Reduced gap to decrease height */
             box-sizing: border-box;
             overflow: hidden;
             text-decoration: none;
@@ -57,7 +57,7 @@
             .stats-section-card {
                 flex: 1 1 calc(50% - calc(var(--spacing-unit) * 1.5));
                 max-width: calc(50% - calc(var(--spacing-unit) * 1.5));
-                padding: calc(var(--spacing-unit) * 5);
+                padding: calc(var(--spacing-unit) * 3); /* Slightly larger padding on desktop, still reduced */
             }
         }
 
@@ -66,7 +66,7 @@
             .stats-section-card {
                 flex: 1 1 100%;
                 width: 100%;
-                padding: calc(var(--spacing-unit) * 4);
+                padding: calc(var(--spacing-unit) * 2); /* Reduced padding for mobile */
                 border-radius: 16px;
             }
         }
@@ -84,7 +84,7 @@
         .stats-section-card--text {
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit) * 0.75);
+            gap: calc(var(--spacing-unit) * 0.5); /* Reduced gap to decrease text section height */
         }
 
         .stats-section-card--title {
@@ -102,8 +102,8 @@
 
         .stats-section-card--image-container {
             position: relative;
-            width: clamp(120px, 40vw, 171px);
-            height: clamp(65px, 20vw, 93.25px);
+            width: clamp(120px, 40vw, 171px); /* Unchanged image size */
+            height: clamp(65px, 20vw, 93.25px); /* Unchanged image size */
             align-self: flex-end;
             will-change: transform;
         }
@@ -113,8 +113,8 @@
             position: absolute;
             bottom: 0;
             right: 0;
-            margin-right: -15px;
-            margin-bottom: -30px;
+            margin-right: -10px; /* Adjusted to prevent clipping with reduced padding */
+            margin-bottom: -20px; /* Adjusted to prevent clipping */
             width: 100%;
             height: 100%;
             object-fit: contain;
@@ -158,8 +158,8 @@
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .stats-section-card--image-container {
-                margin-right: -10px;
-                margin-bottom: -20px;
+                margin-right: -8px; /* Adjusted for reduced padding */
+                margin-bottom: -15px; /* Adjusted for reduced padding */
             }
         }
 
@@ -200,8 +200,8 @@ Show Less</h1>
                 <div class="stats-section-card--subtitle">Build and grow</div>
             </div>
             <div class="stats-section-card--image-container">
-                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="	https://www.growthschool.io/images/course-diff/papers.svg">
-                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="	https://www.growthschool.io/images/course-diff/papers-hover.svg">
+                <img alt="Folder icon" class="stats-section-card--image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder.svg">
+                <img alt="Folder hover icon" class="stats-section-card--hover-image" loading="lazy" width="171" height="93.25" decoding="async" src="https://www.growthschool.io/images/course-diff/folder-hover.svg">
             </div>
         </a>
     </section>
