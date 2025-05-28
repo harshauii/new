@@ -40,7 +40,7 @@
         .mobile-header {
             display: none;
             text-align: center;
-            padding: calc(var(--spacing-unit) * 3);
+            padding: calc(var(--spacing-unit) * 2);
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
             border-bottom: 1px solid var(--border);
@@ -388,7 +388,7 @@
         @media (max-width: 992px) {
             .wrap.section__container--small {
                 flex-direction: column;
-                padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 3);
+                padding: calc(var(--spacing-unit) * 6) calc(var(--spacing-unit) * 1.5);
             }
 
             .left-section, .right-section {
@@ -418,11 +418,35 @@
             }
 
             .accordion-section, .contact-section {
-                padding: calc(var(--spacing-unit) * 4);
+                padding: calc(var(--spacing-unit) * 3);
+            }
+
+            .accordion-header {
+                padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+            }
+
+            .accordion-header svg {
+                right: calc(var(--spacing-unit) * 3);
+                top: calc(var(--spacing-unit) * 2);
+                width: 28px;
+                height: 28px;
+            }
+
+            .accordion-content {
+                padding: 0 calc(var(--spacing-unit) * 3);
+            }
+
+            .accordion-item.active .accordion-content {
+                padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3);
+            }
+
+            .accordion-content p, .accordion-content ul {
+                font-size: 1rem;
+                line-height: 1.5;
             }
 
             .mobile-header {
-                padding: calc(var(--spacing-unit) * 2.5);
+                padding: calc(var(--spacing-unit) * 1.5);
             }
 
             .mobile-logo {
@@ -433,8 +457,8 @@
             .view-course-btn {
                 width: 100%;
                 text-align: center;
-                padding: calc(var(--spacing-unit) * 1.75) calc(var(--spacing-unit) * 4);
-                font-size: 1.0625rem;
+                padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+                font-size: 1rem;
             }
 
             .accordion-header-text .day-number {
