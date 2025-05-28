@@ -82,7 +82,7 @@
             letter-spacing: 0.12em;
             margin-bottom: calc(var(--spacing-unit) * 3);
             opacity: 0;
-            animation: slideUp 0.8s var(--easing) forwards;
+            animation: slideUp 0.25vw;
             animation-delay: 0.2s;
         }
 
@@ -90,7 +90,7 @@
             color: var(--text);
             font-size: clamp(2.25rem, 6vw, 3.5rem);
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: calc(var(--spacing-unit) * 5);
             opacity: 0;
             animation: slideUp 0.8s var(--easing) forwards;
@@ -103,14 +103,14 @@
             color: var(--text-secondary);
             margin-bottom: calc(var(--spacing-unit) * 5);
             opacity: 0;
-            animation: slideUp 0.8s var(--easing) forwards;
+            animation: slideUp 0.5s var(--easing) forwards;
             animation-delay: 0.4s;
         }
 
         .accordion-section {
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            border-radius: 24px;
+            border-radius: 8px;
             padding: calc(var(--spacing-unit) * 5);
             box-shadow: var(--shadow);
             transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
@@ -126,15 +126,15 @@
         }
 
         .accordion-title {
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            border: 0;
+            border-radius: 8px;
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            transition: background 0.4s var(--easing), border-color 0.4s var(--easing), box-shadow 0.4s var(--easing);
+            transition: background 0.4s var(--easing), border-color 0.4s var(--easing), box-shadow 0.3s var(--easing);
         }
 
         .accordion-title:hover {
-            background: rgba(241, 245, 249, 0.9);
+            background: rgba(241, 245, 249, 0.8);
             border-color: var(--primary);
             box-shadow: var(--glow);
         }
@@ -146,10 +146,10 @@
         }
 
         .accordion-header {
-            padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 5);
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 4);
             display: flex;
             flex-direction: column;
-            gap: calc(var(--spacing-unit));
+            gap: calc(var(--spacing-unit) * 0.5);
             cursor: pointer;
         }
 
@@ -177,7 +177,7 @@
             stroke: var(--primary);
             transition: transform 0.4s var(--easing);
             position: absolute;
-            right: calc(var(--spacing-unit) * 5);
+            right: calc(var(--spacing-unit) * 4);
             top: calc(var(--spacing-unit) * 3);
         }
 
@@ -188,14 +188,14 @@
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            padding: 0 calc(var(--spacing-unit) * 5);
+            padding: 0 calc(var(--spacing-unit) * 4);
             transition: max-height 0.7s var(--easing), padding 0.7s var(--easing), opacity 0.7s var(--easing);
             opacity: 0;
         }
 
         .accordion-item.active .accordion-content {
             max-height: 900px;
-            padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 5);
+            padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 4);
             opacity: 1;
         }
 
@@ -268,7 +268,7 @@
         .contact-section {
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            border-radius: 24px;
+            border-radius: 8px;
             padding: calc(var(--spacing-unit) * 5);
             box-shadow: var(--shadow);
             transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
@@ -294,7 +294,7 @@
             top: 140px;
             background: var(--card-bg);
             backdrop-filter: var(--card-backdrop);
-            border-radius: 24px;
+            border-radius: 8px;
             padding: calc(var(--spacing-unit) * 5);
             box-shadow: var(--shadow);
             transition: transform 0.4s var(--easing), box-shadow 0.4s var(--easing);
@@ -404,17 +404,22 @@
             }
 
             .section-header {
-                font-size: clamp(1.875rem, 5vw, 2.25rem);
+                font-size: clamp(1.75rem, 5vw, 2rem);
             }
 
             .section-subheading, .para {
-                font-size: 1rem;
+                font-size: 0.9375rem;
+            }
+
+            .pre-header {
+                font-size: 0.875rem;
             }
         }
 
         @media (max-width: 640px) {
             .section-header {
-                font-size: clamp(1.625rem, 4.5vw, 2rem);
+                font-size: clamp(1.5rem, 4.5vw, 1.75rem);
+                line-height: 1.3;
             }
 
             .accordion-section, .contact-section {
@@ -422,27 +427,47 @@
             }
 
             .accordion-header {
-                padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3);
+                padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
             }
 
             .accordion-header svg {
-                right: calc(var(--spacing-unit) * 3);
+                right: calc(var(--spacing-unit) * 2.5);
                 top: calc(var(--spacing-unit) * 2);
-                width: 28px;
-                height: 28px;
+                width: 24px;
+                height: 24px;
+            }
+
+            .accordion-header-text .day-number {
+                font-size: 1.25rem;
+                line-height: 1.2;
+            }
+
+            .accordion-header-text h4 {
+                font-size: 1.125rem;
+                line-height: 1.3;
             }
 
             .accordion-content {
-                padding: 0 calc(var(--spacing-unit) * 3);
+                padding: 0 calc(var(--spacing-unit) * 2.5);
             }
 
             .accordion-item.active .accordion-content {
-                padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 3);
+                padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 2.5);
             }
 
             .accordion-content p, .accordion-content ul {
-                font-size: 1rem;
-                line-height: 1.5;
+                font-size: 0.9375rem;
+                line-height: 1.4;
+            }
+
+            .accordion-content li {
+                padding-left: calc(var(--spacing-unit) * 3);
+                margin-bottom: calc(var(--spacing-unit) * 1.5);
+            }
+
+            .accordion-content li::before {
+                font-size: 1.5rem;
+                top: -4px;
             }
 
             .mobile-header {
@@ -457,16 +482,9 @@
             .view-course-btn {
                 width: 100%;
                 text-align: center;
-                padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
-                font-size: 1rem;
-            }
-
-            .accordion-header-text .day-number {
-                font-size: 1.375rem;
-            }
-
-            .accordion-header-text h4 {
-                font-size: 1.25rem;
+                padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 2.5);
+                font-size: 0.9375rem;
+                margin-top: calc(var(--spacing-unit) * 3);
             }
         }
     </style>
