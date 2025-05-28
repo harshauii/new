@@ -90,8 +90,8 @@
             }
         }
 
-        /* Show default image when card enters viewport */
-        .stats-section-card.is-visible .stats-section-card--image {
+        /* Show default image when card is visible but not past midpoint */
+        .stats-section-card.is-visible:not(.is-past-midpoint) .stats-section-card--image {
             opacity: 1;
             transform: scale(1);
         }
@@ -240,14 +240,15 @@ Digital Marketing Managers</h1>
         if (window.matchMedia("(max-width: 768px)").matches) {
             const card = document.querySelector(".stats-section-card");
 
-            // Observer 1: Show default image when card enters viewport
+            // Observer 1: Track visibility in viewport
             const visibilityObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
-                        if (entry.isIntersecting && !card.classList.contains("is-past-midpoint")) {
+                        if (entry.isIntersecting) {
                             card.classList.add("is-visible");
-                        } else if (!entry.isIntersecting) {
+                        } else {
                             card.classList.remove("is-visible");
+                            card.classList.remove("is-past-midpoint"); // Reset when out of viewport
                         }
                     });
                 },
@@ -257,19 +258,14 @@ Digital Marketing Managers</h1>
                 }
             );
 
-            // Observer 2: Show hover image when card crosses viewport midpoint
+            // Observer 2: Track when card crosses viewport midpoint
             const midpointObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
                             card.classList.add("is-past-midpoint");
-                            card.classList.remove("is-visible"); // Ensure default image is hidden
                         } else {
                             card.classList.remove("is-past-midpoint");
-                            // Re-show default image if still in viewport
-                            if (visibilityObserver.takeRecords().some(e => e.isIntersecting)) {
-                                card.classList.add("is-visible");
-                            }
                         }
                     });
                 },
