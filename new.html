@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt Copy Section - Advanced Apple Style</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Apple-inspired typography */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      background: #FFFFFF; /* Apple’s soft neutral background */
+    }
+    h2 {
+      font-family: 'SF Pro Display', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    /* Glassmorphism for cards */
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.65));
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 18px;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    .glass-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+    /* Touch feedback for mobile */
+    @media (hover: none) {
+      .glass-card:active {
+        transform: scale(0.98);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      }
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+    }
+    /* Popup styling */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s cubic-bezier(0.36, 0.66, 0.04, 1);
+    }
+    .popup.show {
+      display: flex;
+      opacity: 1;
+    }
+    .popup-content {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72));
+      backdrop-filter: blur(16px);
+      border-radius: 22px;
+      padding: 32px 32px 24px;
+      max-width: 90%;
+      width: 640px;
+      max-height: 85vh;
+      overflow-y: auto;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      transform: scale(0.85);
+      transition: transform 0.4s cubic-bezier(0.36, 0.66, 0.04, 1), opacity 0.4s cubic-bezier(0.36, 0.66, 0.04, 1);
+    }
+    .popup.show .popup-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+    /* Apple-style buttons */
+    .copy-btn {
+      background: #007AFF; /* Apple’s vibrant blue */
+      color: white;
+      padding: 12px 24px;
+      border-radius: 14px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .copy-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease;
+    }
+    .copy-btn:active::after {
+      width: 240px;
+      height: 240px;
+    }
+    .copy-btn:hover {
+      background: #0051C1;
+      transform: scale(1.04);
+    }
+    .close-btn {
+      background: #ff2626;
+      color: #FFFFFF;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+    }
+    .close-btn:hover {
+      background: #ff2626;
+      transform: scale(1.1);
+    }
+    /* Copied feedback */
+    .copied-feedback {
+      opacity: 0;
+      transform: translateX(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      font-size: 0.9375rem;
+      color: #34C759; /* Apple’s green */
+    }
+    .copied-feedback.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.12), transparent);
+    }
+    /* Mobile optimizations */
+    @media (max-width: 640px) {
+      h2 {
+        font-size: 1.75rem;
+      }
+      .glass-card {
+        padding: 1.25rem;
+      }
+      .glass-card p {
+        font-size: 1.125rem;
+      }
+      .copy-btn {
+        padding: 10px 18px;
+        font-size: 0.9375rem;
+      }
+      .popup-content {
+        padding: 24px 24px 20px;
+        width: 95%;
+        max-height: 85vh;
+      }
+      .popup-text {
+        font-size: 0.9375rem;
+        line-height: 1.75rem;
+      }
+      .close-btn {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body class="text-gray-900">
+  <section class="min-h-screen flex items-center justify-center p-6 sm:p-8">
+    <div class="max-w-4xl w-full space-y-8">
+      <h2 class="text-4xl sm:text-5xl font-semibold text-center mb-12 tracking-tight">Prompt Library</h2>
+      <!-- Prompt 1 -->
+      <div class="glass-card p-6 sm:p-8 cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between" onclick="openPopup('Generate a sleek UI design for a mobile app', 'Design a modern, user-friendly mobile app interface with minimalist aesthetics, smooth animations, and high accessibility. Incorporate glassmorphism, subtle gradients, and responsive layouts optimized for iOS and Android platforms, ensuring a seamless experience across devices.', this)">
+        <p class="text-xl sm:text-2xl flex-1 mb-4 sm:mb-0">Generate a sleek UI design for a mobile app</p>
+        <div class="flex items-center space-x-3">
+          <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard('Generate a sleek UI design for a mobile app', this.nextElementSibling)">Copy</button>
+          <span class="copied-feedback">Copied!</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- Prompt 2 -->
+      <div class="glass-card p-6 sm:p-8 cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between" onclick="openPopup('Create a 3D product showcase for a website', 'Develop an interactive 3D product showcase for a website, featuring realistic rotations, dynamic lighting, and augmented reality (AR) integration. Optimize for fast loading times and cross-device compatibility, with a focus on Apple’s Metal shaders for high-performance rendering.', this)">
+        <p class="text-xl sm:text-2xl flex-1 mb-4 sm:mb-0">Create a 3D product showcase for a website</p>
+        <div class="flex items-center space-x-3">
+          <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard('Create a 3D product showcase for a website', this.nextElementSibling)">Copy</button>
+          <span class="copied-feedback">Copied!</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- Prompt 3 -->
+      <div class="glass-card p-6 sm:p-8 cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between" onclick="openPopup('Design an AI-driven personalized dashboard', 'Build a dynamic dashboard that leverages AI to personalize content based on user behavior and preferences. Include real-time data visualizations, adaptive layouts for various screen sizes, and voice control options for hands-free interaction.', this)">
+        <p class="text-xl sm:text-2xl flex-1 mb-4 sm:mb-0">Design an AI-driven personalized dashboard</p>
+        <div class="flex items-center space-x-3">
+          <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard('Design an AI-driven personalized dashboard', this.nextElementSibling)">Copy</button>
+          <span class="copied-feedback">Copied!</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <!-- Prompt 4 -->
+      <div class="glass-card p-6 sm:p-8 cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between" onclick="openPopup('Build a voice-activated webpage interface', 'Create a webpage with voice-activated navigation, supporting hands-free controls and multilingual input. Ensure accessibility with screen reader compatibility, high-contrast visuals, and keyboard navigation, aligning with Apple’s Human Interface Guidelines.', this)">
+        <p class="text-xl sm:text-2xl flex-1 mb-4 sm:mb-0">Build a voice-activated webpage interface</p>
+        <div class="flex items-center space-x-3">
+          <button class="copy-btn" onclick="event.stopPropagation(); copyToClipboard('Build a voice-activated webpage interface', this.nextElementSibling)">Copy</button>
+          <span class="copied-feedback">Copied!</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popup -->
+  <div id="popup" class="popup" role="dialog" aria-labelledby="popup-title">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup()" aria-label="Close popup">✕</button>
+      <p id="popup-text" class="popup-text text-lg leading-7 mb-6"></p>
+      <div class="flex items-center space-x-4">
+        <button class="copy-btn" onclick="copyToClipboard(currentText, document.getElementById('copied-feedback'))">Copy to Clipboard</button>
+        <span id="copied-feedback" class="copied-feedback">Copied!</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentText = '';
+
+    function openPopup(title, longText, element) {
+      currentText = longText;
+      document.getElementById('popup-text').textContent = longText;
+      document.getElementById('popup').classList.add('show');
+      document.querySelector('.popup-content').focus();
+    }
+
+    function closePopup() {
+      document.getElementById('popup').classList.remove('show');
+      document.querySelector('.glass-card[tabindex="0"]:first-of-type').focus();
+    }
+
+    function copyToClipboard(text, feedbackElement) {
+      navigator.clipboard.writeText(text).then(() => {
+        feedbackElement.classList.add('show');
+        setTimeout(() => feedbackElement.classList.remove('show'), 1000);
+      }).catch((err) => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    // Accessibility: Keyboard navigation
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.setAttribute('tabindex', '0');
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const text = card.querySelector('p').textContent;
+          const longText = card.getAttribute('onclick').match(/'([^']+)','([^']+)'/)[2];
+          openPopup(text, longText, card);
+        }
+      });
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.setAttribute('tabindex', '0');
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.stopPropagation();
+          btn.click();
+        }
+      });
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('popup').classList.contains('show')) {
+        closePopup();
+      }
+    });
+
+    // Accessibility: Focus trap for popup
+    document.getElementById('popup').addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        const focusable = document.querySelectorAll('#popup button, #popup .copy-btn');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
