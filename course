@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Firebase E-learning Demo</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 700px; margin: 20px auto; }
+  .hidden { display: none; }
+  nav button { margin: 5px; }
+  #lesson-content { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
+  progress { width: 100%; height: 20px; }
+  .btn { padding: 6px 12px; margin-top: 10px; cursor: pointer; }
+  input, button { font-size: 1rem; }
+</style>
+</head>
+<body>
+
+<h1>Firebase E-learning Demo</h1>
+
+<div id="auth-section">
+  <h2>Login</h2>
+  <input id="email" type="email" placeholder="Email" /><br/>
+  <input id="password" type="password" placeholder="Password" /><br/>
+  <button id="login-btn" class="btn">Login</button>
+  <button id="signup-btn" class="btn">Sign Up</button>
+  <div id="auth-message"></div>
+</div>
+
+<div id="app" class="hidden">
+
+  <button id="logout-btn" class="btn">Logout</button>
+
+  <div id="admin-dashboard" class="hidden">
+    <h2>Admin Dashboard</h2>
+    <h3>Edit Lessons (10 lessons fixed)</h3>
+    <div id="lessons-edit"></div>
+    <button id="save-course-btn" class="btn">Save Course</button>
+    <div id="admin-message"></div>
+  </div>
+
+  <div id="student-dashboard" class="hidden">
+    <h2>Student Dashboard</h2>
+    <div id="course-info"></div>
+    <progress id="progress-bar" max="10" value="0"></progress>
+    <div>
+      <button id="prev-lesson-btn" class="btn">Previous Lesson</button>
+      <button id="next-lesson-btn" class="btn">Next Lesson</button>
+    </div>
+    <div id="lesson-content"></div>
+    <button id="pause-btn" class="btn">Pause</button>
+    <button id="resume-btn" class="btn hidden">Resume</button>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Your Firebase config here
+const firebaseConfig = {
+  apiKey: "AIzaSyB1GYChBrbFIXxjE52XVQu7m3paa8xOI-o",
+  authDomain: "harshajw-14ab6.firebaseapp.com",
+  databaseURL: "https://harshajw-14ab6-default-rtdb.firebaseio.com",
+  projectId: "harshajw-14ab6",
+  storageBucket: "harshajw-14ab6.firebasestorage.app",
+  messagingSenderId: "532215520519",
+  appId: "1:532215520519:web:798a51bcceff98bd4cb9a2",
+  measurementId: "G-J8CRXVQYV6"
+};
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // Elements
+  const authSection = document.getElementById('auth-section');
+  const app = document.getElementById('app');
+  const adminDashboard = document.getElementById('admin-dashboard');
+  const studentDashboard = document.getElementById('student-dashboard');
+
+  const loginBtn = document.getElementById('login-btn');
+  const signupBtn = document.getElementById('signup-btn');
+  const logoutBtn = document.getElementById('logout-btn');
+  const authMessage = document.getElementById('auth-message');
+
+  const lessonsEdit = document.getElementById('lessons-edit');
+  const saveCourseBtn = document.getElementById('save-course-btn');
+  const adminMessage = document.getElementById('admin-message');
+
+  const courseInfo = document.getElementById('course-info');
+  const progressBar = document.getElementById('progress-bar');
+  const lessonContent = document.getElementById('lesson-content');
+  const prevLessonBtn = document.getElementById('prev-lesson-btn');
+  const nextLessonBtn = document.getElementById('next-lesson-btn');
+  const pauseBtn = document.getElementById('pause-btn');
+  const resumeBtn = document.getElementById('resume-btn');
+
+  // Constants
+  const COURSE_ID = 'course1';
+  const TOTAL_LESSONS = 10;
+
+  // State
+  let currentUser = null;
+  let isAdmin = false;
+  let courseData = null;
+  let currentLessonIndex = 0;
+  let pausedAt = 0;
+
+  // ---------- AUTH ------------
+
+  loginBtn.onclick = async () => {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    authMessage.textContent = '';
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (e) {
+      authMessage.textContent = e.message;
+    }
+  };
+
+  signupBtn.onclick = async () => {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    authMessage.textContent = '';
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      alert("User created! Ask admin to add admin role if needed.");
+    } catch (e) {
+      authMessage.textContent = e.message;
+    }
+  };
+
+  logoutBtn.onclick = () => auth.signOut();
+
+  // ---------- LOAD COURSE DATA --------------
+
+  async function loadCourse() {
+    const doc = await db.collection('courses').doc(COURSE_ID).get();
+    if (!doc.exists) {
+      // Initialize course with 10 lessons (empty)
+      const lessons = [];
+      for(let i=1; i<=TOTAL_LESSONS; i++) {
+        lessons.push({ title: `Lesson ${i}`, content: `Content for lesson ${i}` });
+      }
+      await db.collection('courses').doc(COURSE_ID).set({ title: 'Sample Course', lessons });
+      courseData = { title: 'Sample Course', lessons };
+    } else {
+      courseData = doc.data();
+    }
+  }
+
+  // ---------- ADMIN DASHBOARD -------------
+
+  function renderAdminLessons() {
+    lessonsEdit.innerHTML = '';
+    courseData.lessons.forEach((lesson, idx) => {
+      const div = document.createElement('div');
+      div.style.marginBottom = '8px';
+      div.innerHTML = `
+        <b>Lesson ${idx + 1}</b><br/>
+        Title:<br/>
+        <input type="text" data-idx="${idx}" class="lesson-title" value="${lesson.title}" style="width:100%" /><br/>
+        Content:<br/>
+        <textarea data-idx="${idx}" class="lesson-content" style="width:100%;height:60px;">${lesson.content}</textarea>
+      `;
+      lessonsEdit.appendChild(div);
+    });
+  }
+
+  saveCourseBtn.onclick = async () => {
+    adminMessage.textContent = '';
+    // Gather lesson edits
+    const titles = document.querySelectorAll('.lesson-title');
+    const contents = document.querySelectorAll('.lesson-content');
+    for (let i = 0; i < courseData.lessons.length; i++) {
+      courseData.lessons[i].title = titles[i].value.trim() || `Lesson ${i+1}`;
+      courseData.lessons[i].content = contents[i].value.trim() || `Content for lesson ${i+1}`;
+    }
+    try {
+      await db.collection('courses').doc(COURSE_ID).set(courseData);
+      adminMessage.textContent = 'Course saved successfully.';
+    } catch (e) {
+      adminMessage.textContent = 'Error saving course: ' + e.message;
+    }
+  };
+
+  // --------- STUDENT DASHBOARD -------------
+
+  async function enrollUserIfNeeded(uid) {
+    const userRef = db.collection('users').doc(uid);
+    const doc = await userRef.get();
+    if (!doc.exists || !doc.data().enrolledCourses?.includes(COURSE_ID)) {
+      // Enroll user
+      await userRef.set({
+        enrolledCourses: [COURSE_ID],
+        progress: { [COURSE_ID]: { currentLesson: 0, pausedAt: 0 } }
+      }, { merge: true });
+    }
+  }
+
+  async function loadUserProgress(uid) {
+    const doc = await db.collection('users').doc(uid).get();
+    if (!doc.exists) return null;
+    const progress = doc.data().progress?.[COURSE_ID];
+    if (!progress) return null;
+    return progress;
+  }
+
+  async function saveUserProgress(uid, currentLesson, pausedAt) {
+    await db.collection('users').doc(uid).set({
+      progress: { [COURSE_ID]: { currentLesson, pausedAt } }
+    }, { merge: true });
+  }
+
+  function renderLesson() {
+    const lesson = courseData.lessons[currentLessonIndex];
+    courseInfo.textContent = `Course: ${courseData.title}`;
+    lessonContent.innerHTML = `<h3>${lesson.title}</h3><p>${lesson.content}</p>`;
+    progressBar.value = currentLessonIndex + 1;
+    pausedAt = 0;
+    pauseBtn.classList.remove('hidden');
+    resumeBtn.classList.add('hidden');
+  }
+
+  prevLessonBtn.onclick = async () => {
+    if (currentLessonIndex > 0) {
+      currentLessonIndex--;
+      await saveUserProgress(currentUser.uid, currentLessonIndex, 0);
+      renderLesson();
+    }
+  };
+
+  nextLessonBtn.onclick = async () => {
+    if (currentLessonIndex < TOTAL_LESSONS - 1) {
+      currentLessonIndex++;
+      await saveUserProgress(currentUser.uid, currentLessonIndex, 0);
+      renderLesson();
+    }
+  };
+
+  pauseBtn.onclick = async () => {
+    pausedAt = Date.now();
+    pauseBtn.classList.add('hidden');
+    resumeBtn.classList.remove('hidden');
+    // Save pause timestamp (just demo, here we store pause moment timestamp)
+    await saveUserProgress(currentUser.uid, currentLessonIndex, pausedAt);
+  };
+
+  resumeBtn.onclick = async () => {
+    pauseBtn.classList.remove('hidden');
+    resumeBtn.classList.add('hidden');
+    pausedAt = 0;
+    await saveUserProgress(currentUser.uid, currentLessonIndex, 0);
+  };
+
+  // ---------- AUTH STATE CHANGE -------------
+
+  auth.onAuthStateChanged(async user => {
+    if (user) {
+      currentUser = user;
+      authSection.classList.add('hidden');
+      app.classList.remove('hidden');
+      logoutBtn.disabled = false;
+
+      // Check if admin
+      isAdmin = false;
+      const token = await user.getIdTokenResult();
+      if (token.claims.admin) isAdmin = true;
+
+      if (isAdmin) {
+        adminDashboard.classList.remove('hidden');
+        studentDashboard.classList.add('hidden');
+        await loadCourse();
+        renderAdminLessons();
+      } else {
+        adminDashboard.classList.add('hidden');
+        studentDashboard.classList.remove('hidden');
+        await loadCourse();
+        await enrollUserIfNeeded(user.uid);
+        const progress = await loadUserProgress(user.uid);
+        currentLessonIndex = (progress && progress.currentLesson !== undefined) ? progress.currentLesson : 0;
+        pausedAt = (progress && progress.pausedAt) || 0;
+        renderLesson();
+      }
+
+    } else {
+      currentUser = null;
+      isAdmin = false;
+      authSection.classList.remove('hidden');
+      app.classList.add('hidden');
+      logoutBtn.disabled = true;
+    }
+  });
+</script>
+
+</body>
+</html>
