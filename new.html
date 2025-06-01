@@ -63,7 +63,71 @@
             margin: 0 auto;
         }
 
-      
+        /* Progress Indicator */
+        .progress-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto 50px;
+        }
+
+        .progress-bar {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            height: 4px;
+            background: var(--light-gray);
+            width: 100%;
+            z-index: 1;
+        }
+
+        .progress-fill {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 30%;
+            z-index: 2;
+            transition: var(--transition);
+        }
+
+        .progress-step {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            width: 40px;
+        }
+
+        .progress-circle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            font-weight: 700;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .progress-step.active .progress-circle {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .progress-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            white-space: nowrap;
+        }
+
         /* Main Layout */
         .content-wrapper {
             display: grid;
@@ -490,13 +554,33 @@
             <h1>10 Days to AI Expertise</h1>
             <p>Explore your personalized learning path with daily lessons designed to build your AI skills and professional profile.</p>
             
-
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+                <div class="progress-fill"></div>
+                <div class="progress-step active">
+                    <div class="progress-circle">1</div>
+                    <div class="progress-label">Started</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-circle">2</div>
+                    <div class="progress-label">Learning</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-circle">3</div>
+                    <div class="progress-label">Building</div>
+                </div>
+                <div class="progress-step">
+                    <div class="progress-circle">4</div>
+                    <div class="progress-label">Mastery</div>
+                </div>
+            </div>
+        </div>
 
         <div class="content-wrapper">
             <div class="curriculum-section">
                 <div class="section-header">
-                    <h2>10 Modules • 10 Days</h2>
-                
+                    <h2>AI Mastery Curriculum</h2>
+                    <div class="days-badge">10 Modules • 10 Days</div>
                 </div>
                 <div class="section-subheading">
                     <p>Your personalized learning path with daily lessons and activities designed to build your AI skills and professional profile.</p>
